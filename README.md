@@ -1,10 +1,10 @@
 Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 2, 2017
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 5, 2017
 
-A brief introduction to basic usage of `DataFrames`. Tested under version `0.11`
+A brief introduction to basic usage of `DataFrames`. Tested under `DataFrames` master on 2017-12-05.
 
-I will try to keep it up to date as the package evolves.
+I will try to keep it up to date as the package evolves. This tutorial covers `DataFrames`, `CSV`, `Missings` and `CategoricalArrays` only. It does not show any additional packages that can be used with `DataFrames`.
 
 | File                                                                                                              | Topic                             |
 |-------------------------------------------------------------------------------------------------------------------|-----------------------------------|
@@ -17,3 +17,4 @@ I will try to keep it up to date as the package evolves.
 | [07_factors.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/07_factors.ipynb)             | Working with categorical data     |
 | [08_joins.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/08_joins.ipynb)                 | Joining DataFrames                |
 | [09_reshaping.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/09_reshaping.ipynb)         | Reshaping DataFrames              |
+| [10_transforms.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/10_transforms.ipynb)       | Transforming DataFrames           |
