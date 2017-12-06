@@ -1,10 +1,12 @@
-Introduction to DataFrames
+# An Introduction to DataFrames
 
 [Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 6, 2017
 
 A brief introduction to basic usage of `DataFrames`. Tested under `DataFrames` master on 2017-12-05.
 
 I will try to keep it up to date as the package evolves. This tutorial covers `DataFrames`, `CSV`, `Missings` and `CategoricalArrays` only. It does not show any additional packages that can be used with `DataFrames`.
+
+# TOC
 
 | File                                                                                                              | Topic                             |
 |-------------------------------------------------------------------------------------------------------------------|-----------------------------------|
@@ -25,3 +27,16 @@ Changelog:
 |------------|---------------------------------------------------------------------------------------------------|
 | 2017-12-05 | Initial release                                                                                   |
 | 2017-12-06 | Added description of `insert!`, `merge!`, `empty!`, `categorical!`, `delete!`, `DataFrames.index` |
+
+# Function summary
+
+1. Constructors: `DataFrame`
+2. Getting summary: `size`, `nrow`, `ncol`, `length`, `describe`, `showcols`, `names`, `eltypes`, `head`, `tail`
+3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `Missings.replace`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`
+4. Loading and saving: `CSV` (package), `JLD` (package), `CSV.read`, `CSV.write`, `save` (from `JLD`), `load` (from `JLD`)
+5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insert!`, `DataFrames.hcat!`, `merge!`, `empty!`, `categorical!`, `DataFrames.index`
+6. Working with rows: `sort!`, `sort`, `append!`, `vcat`, `push!`, `view`, `deleterows!`, `unique`, `nonunique`, `unique!`
+7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
+8. Joining: `join`
+9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
+10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `colwise`
