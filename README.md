@@ -1,6 +1,6 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 6, 2017
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 9, 2017
 
 A brief introduction to basic usage of `DataFrames`. Tested under `DataFrames` master on 2017-12-05.
 
@@ -20,6 +20,7 @@ I will try to keep it up to date as the package evolves. This tutorial covers `D
 | [08_joins.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/08_joins.ipynb)                 | Joining DataFrames                |
 | [09_reshaping.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/09_reshaping.ipynb)         | Reshaping DataFrames              |
 | [10_transforms.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/10_transforms.ipynb)       | Transforming DataFrames           |
+| [11_performance.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/11_performance.ipynb)     | Performance tips                  |
 
 Changelog:
 
@@ -27,6 +28,7 @@ Changelog:
 |------------|---------------------------------------------------------------------------------------------------|
 | 2017-12-05 | Initial release                                                                                   |
 | 2017-12-06 | Added description of `insert!`, `merge!`, `empty!`, `categorical!`, `delete!`, `DataFrames.index` |
+| 2017-12-09 | Added performance tips                                                                            |
 
 # Function summary
 
