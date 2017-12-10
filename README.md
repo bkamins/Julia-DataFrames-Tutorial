@@ -28,7 +28,7 @@ Changelog:
 |------------|---------------------------------------------------------------------------------------------------|
 | 2017-12-05 | Initial release                                                                                   |
 | 2017-12-06 | Added description of `insert!`, `merge!`, `empty!`, `categorical!`, `delete!`, `DataFrames.index` |
-| 2017-12-09 | Added performance tips                                                                            |
+| 2017-12-10 | Added performance tips                                                                            |
 
 # Function summary
 
