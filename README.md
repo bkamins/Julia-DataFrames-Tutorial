@@ -1,10 +1,22 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 10, 2017
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 18, 2017
 
-A brief introduction to basic usage of `DataFrames`. Tested under `DataFrames` master on 2017-12-05.
+A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
+Tested under master from 2017-12-05 and Julia 0.6.2.
 
-I will try to keep it up to date as the package evolves. This tutorial covers `DataFrames`, `CSV`, `Missings` and `CategoricalArrays` only. It does not show any additional packages that can be used with `DataFrames`.
+I will try to keep it up to date as the package evolves.
+This tutorial covers
+[DataFrames](https://github.com/JuliaData/DataFrames.jl),
+[CSV](https://github.com/JuliaData/CSV.jl),
+[Missings](https://github.com/JuliaData/Missings.jl),
+and [CategoricalArrays](https://github.com/JuliaData/CategoricalArrays.jl),
+as they constitute the core of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
+
+In the last [extras](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/13_extras.ipynb)
+part mentions *selected* functionalities of *selected* useful packages that I find useful for data manipulation, currently those are:
+[FreqTables](https://github.com/nalimilan/FreqTables.jl),
+[DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl).
 
 # TOC
 
@@ -21,7 +33,8 @@ I will try to keep it up to date as the package evolves. This tutorial covers `D
 | [09_reshaping.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/09_reshaping.ipynb)         | Reshaping DataFrames              |
 | [10_transforms.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/10_transforms.ipynb)       | Transforming DataFrames           |
 | [11_performance.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/11_performance.ipynb)     | Performance tips                  |
-| [12_pitfalls.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/12_pitfalls.ipynb)     | Possible pitfalls                  |
+| [12_pitfalls.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/12_pitfalls.ipynb)           | Possible pitfalls                 |
+| [13_extras.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/13_extras.ipynb)               | Additional interesting packages   |
 
 Changelog:
 
@@ -31,8 +44,9 @@ Changelog:
 | 2017-12-06 | Added description of `insert!`, `merge!`, `empty!`, `categorical!`, `delete!`, `DataFrames.index` |
 | 2017-12-09 | Added performance tips                                                                            |
 | 2017-12-10 | Added pitfalls                                                                                    |
+| 2017-12-18 | Added additional interesting packages:                                                            |
 
-# Function summary
+# Core functions summary
 
 1. Constructors: `DataFrame`
 2. Getting summary: `size`, `nrow`, `ncol`, `length`, `describe`, `showcols`, `names`, `eltypes`, `head`, `tail`
