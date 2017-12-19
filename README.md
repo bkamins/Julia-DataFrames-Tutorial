@@ -44,7 +44,7 @@ Changelog:
 | 2017-12-06 | Added description of `insert!`, `merge!`, `empty!`, `categorical!`, `delete!`, `DataFrames.index` |
 | 2017-12-09 | Added performance tips                                                                            |
 | 2017-12-10 | Added pitfalls                                                                                    |
-| 2017-12-18 | Added additional interesting packages:                                                            |
+| 2017-12-18 | Added additional worthwhile packages: *FreqTables* and *DataFramesMeta*                           |
 
 # Core functions summary
 
@@ -58,3 +58,7 @@ Changelog:
 8. Joining: `join`
 9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
 10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `colwise`
+11. Extras:
+    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`
+    * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
+      `by`, `based_on`
