@@ -1,6 +1,6 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 18, 2017
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 25, 2017
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 Tested under master from 2017-12-05 and Julia 0.6.2.
@@ -59,6 +59,6 @@ Changelog:
 9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
 10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `colwise`
 11. Extras:
-    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`
+    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
       `by`, `based_on`
