@@ -45,6 +45,7 @@ Changelog:
 | 2017-12-09 | Added performance tips                                                                            |
 | 2017-12-10 | Added pitfalls                                                                                    |
 | 2017-12-18 | Added additional worthwhile packages: *FreqTables* and *DataFramesMeta*                           |
+| 2017-12-29 | Added description of `filter` and `filter!`                                                       |
 
 # Core functions summary
 
@@ -53,7 +54,7 @@ Changelog:
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `Missings.replace`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`
 4. Loading and saving: `CSV` (package), `JLD` (package), `CSV.read`, `CSV.write`, `save` (from `JLD`), `load` (from `JLD`)
 5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insert!`, `DataFrames.hcat!`, `merge!`, `delete!`, `empty!`, `categorical!`, `DataFrames.index`
-6. Working with rows: `sort!`, `sort`, `append!`, `vcat`, `push!`, `view`, `deleterows!`, `unique`, `nonunique`, `unique!`
+6. Working with rows: `sort!`, `sort`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
 9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
@@ -62,3 +63,4 @@ Changelog:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
       `by`, `based_on`
+
