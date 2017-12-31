@@ -22,7 +22,7 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 
 | File                                                                                                              | Topic                             |
 |-------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| [01_constructors.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/01_constructors.ipynb)   | Creating DataFrames               |
+| [01_constructors.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/01_constructors.ipynb)   | Creating DataFrame and conversion |
 | [02_basicinfo.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/02_basicinfo.ipynb)         | Getting summary information       |
 | [03_missingvalues.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/03_missingvalues.ipynb) | Handling missing values           |
 | [04_loadsave.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/04_loadsave.ipynb)           | Loading and saving DataFrames     |
@@ -46,6 +46,7 @@ Changelog:
 | 2017-12-10 | Added pitfalls                                                                                    |
 | 2017-12-18 | Added additional worthwhile packages: *FreqTables* and *DataFramesMeta*                           |
 | 2017-12-29 | Added description of `filter` and `filter!`                                                       |
+| 2017-12-31 | Added description of conversion to `Matrix`                                                       |
 
 # Core functions summary
 
