@@ -1,6 +1,6 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Dec 25, 2017
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 6, 2018
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 Tested under master from 2017-12-05 and Julia 0.6.2.
@@ -47,6 +47,7 @@ Changelog:
 | 2017-12-18 | Added additional worthwhile packages: *FreqTables* and *DataFramesMeta*                           |
 | 2017-12-29 | Added description of `filter` and `filter!`                                                       |
 | 2017-12-31 | Added description of conversion to `Matrix`                                                       |
+| 2018-04-06 | Added example of extracting a row from a `DataFrame`                                              |
 
 # Core functions summary
 
