@@ -1,14 +1,15 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 6, 2018
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under master from 2017-12-05 and Julia 0.6.2.
+Tested under Julia 0.6.2, DataFrames 0.11.6, CSV 0.2.4, JLD 0.8.3, Missings 0.2.9, CategoricalArrays 0.3.9, FreqTables 0.2.2, DataFramesMeta 0.3.0.
 
 I will try to keep it up to date as the package evolves.
 This tutorial covers
 [DataFrames](https://github.com/JuliaData/DataFrames.jl),
 [CSV](https://github.com/JuliaData/CSV.jl),
+[JLD](https://github.com/JuliaIO/JLD.jl),
 [Missings](https://github.com/JuliaData/Missings.jl),
 and [CategoricalArrays](https://github.com/JuliaData/CategoricalArrays.jl),
 as they constitute the core of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
@@ -48,12 +49,13 @@ Changelog:
 | 2017-12-29 | Added description of `filter` and `filter!`                                                       |
 | 2017-12-31 | Added description of conversion to `Matrix`                                                       |
 | 2018-04-06 | Added example of extracting a row from a `DataFrame`                                              |
+| 2018-04-21 | Major update of whole tutorial                                                                    |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`
 2. Getting summary: `size`, `nrow`, `ncol`, `length`, `describe`, `showcols`, `names`, `eltypes`, `head`, `tail`
-3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `Missings.replace`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`
+3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, disallowmissing, disallowmissing!
 4. Loading and saving: `CSV` (package), `JLD` (package), `CSV.read`, `CSV.write`, `save` (from `JLD`), `load` (from `JLD`)
 5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insert!`, `DataFrames.hcat!`, `merge!`, `delete!`, `empty!`, `categorical!`, `DataFrames.index`
 6. Working with rows: `sort!`, `sort`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`
@@ -66,3 +68,7 @@ Changelog:
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
       `by`, `based_on`
 
+# Changes in DataFrames master since last update of the tutorial
+
+1. Improved rendering of `#undef` in HTML/LaTeX.
+2. Added `permutecols!` function.
