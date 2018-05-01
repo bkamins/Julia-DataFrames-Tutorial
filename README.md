@@ -1,6 +1,6 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 1, 2018
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 Tested under Julia 0.6.2, DataFrames 0.11.6, CSV 0.2.4, JLD 0.8.3, Missings 0.2.9, CategoricalArrays 0.3.9, FreqTables 0.2.2, DataFramesMeta 0.3.0.
@@ -50,6 +50,7 @@ Changelog:
 | 2017-12-31 | Added description of conversion to `Matrix`                                                       |
 | 2018-04-06 | Added example of extracting a row from a `DataFrame`                                              |
 | 2018-04-21 | Major update of whole tutorial                                                                    |
+| 2018-05-01 | Added `byrow!` example                                                                            |
 
 # Core functions summary
 
@@ -66,7 +67,7 @@ Changelog:
 11. Extras:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
-      `by`, `based_on`
+      `by`, `based_on`, `byrow!`
 
 # Changes in DataFrames master since last update of the tutorial
 
