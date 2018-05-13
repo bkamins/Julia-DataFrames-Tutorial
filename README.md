@@ -1,9 +1,9 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 1, 2018
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 13, 2018
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 0.6.2, DataFrames 0.11.6, CSV 0.2.4, JLD 0.8.3, Missings 0.2.9, CategoricalArrays 0.3.9, FreqTables 0.2.2, DataFramesMeta 0.3.0.
+Tested under Julia 0.6.2, DataFrames 0.11.6, CSV 0.2.4, JLD 0.8.3, Missings 0.2.9, CategoricalArrays 0.3.9, FreqTables 0.2.2, DataFramesMeta 0.3.0, StatPlots 0.7.2.
 
 I will try to keep it up to date as the package evolves.
 This tutorial covers
@@ -17,7 +17,8 @@ as they constitute the core of [DataFrames](https://github.com/JuliaData/DataFra
 In the last [extras](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/13_extras.ipynb)
 part mentions *selected* functionalities of *selected* useful packages that I find useful for data manipulation, currently those are:
 [FreqTables](https://github.com/nalimilan/FreqTables.jl),
-[DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl).
+[DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl),
+[StatPlots](https://github.com/JuliaPlots/StatPlots.jl).
 
 # TOC
 
@@ -51,6 +52,7 @@ Changelog:
 | 2018-04-06 | Added example of extracting a row from a `DataFrame`                                              |
 | 2018-04-21 | Major update of whole tutorial                                                                    |
 | 2018-05-01 | Added `byrow!` example                                                                            |
+| 2018-05-13 | Added `StatPlots` package to extras                                                               |
 
 # Core functions summary
 
@@ -68,6 +70,7 @@ Changelog:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
       `by`, `based_on`, `byrow!`
+    * [StatPlots](https://github.com/JuliaPlots/StatPlots.jl): `@df`, `plot`, `density`, `histogram`,`boxplot`, `violin`
 
 # Changes in DataFrames master since last update of the tutorial
 
