@@ -53,7 +53,7 @@ Changelog:
 | 2018-04-21 | Major update of whole tutorial                                                                    |
 | 2018-05-01 | Added `byrow!` example                                                                            |
 | 2018-05-13 | Added `StatPlots` package to extras                                                               |
-| 2018-05-23 | Improved comments in sections 1 do 3 by [Jane Herriman](https://github.com/xorJane)               |
+| 2018-05-23 | Improved comments in sections 1 do 5 by [Jane Herriman](https://github.com/xorJane)               |
 
 # Core functions summary
 
