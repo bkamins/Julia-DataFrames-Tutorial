@@ -77,3 +77,5 @@ Changelog:
 
 1. Improved rendering of `#undef` in HTML/LaTeX.
 2. Added `permutecols!` function.
+3. `describe` returns a `DataFrame`
+4. On Julia 0.7 you can access columns of `DataFrame` using `.` notation
