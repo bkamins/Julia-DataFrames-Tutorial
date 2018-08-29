@@ -1,16 +1,15 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), July 25, 2018
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), August 29, 2018
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 0.6.3, DataFrames 0.11.7, CSV 0.2.5, JLD 0.8.3, Missings 0.2.10, CategoricalArrays 0.3.11, FreqTables 0.2.2, DataFramesMeta 0.3.0, StatPlots 0.7.2.
+Tested under Julia 1.0.0, DataFrames 0.13.1, CSV 0.3.1, JLD2 0.1.1 (works under Julia 1.0 with patch https://github.com/simonster/JLD2.jl/pull/106), FileIO 1.0.1, CategoricalArrays 0.3.13, FreqTables 0.2.2 (not working under Julia 1.0 yet), DataFramesMeta 0.4.0, StatPlots 0.8.0. Also package `BencmarkTools` is used as a utility.
 
 I will try to keep it up to date as the package evolves.
 This tutorial covers
 [DataFrames](https://github.com/JuliaData/DataFrames.jl),
 [CSV](https://github.com/JuliaData/CSV.jl),
-[JLD](https://github.com/JuliaIO/JLD.jl),
-[Missings](https://github.com/JuliaData/Missings.jl),
+[JLD2](https://github.com/JuliaIO/JLD2.jl),
 and [CategoricalArrays](https://github.com/JuliaData/CategoricalArrays.jl),
 as they constitute the core of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -19,6 +18,8 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 [FreqTables](https://github.com/nalimilan/FreqTables.jl),
 [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl),
 [StatPlots](https://github.com/JuliaPlots/StatPlots.jl).
+
+** Tutorial is updated to Julia 1.0 in sections from 1 to 10. Sections 11, 12 and 13 are not updated yet **
 
 # TOC
 
@@ -55,6 +56,7 @@ Changelog:
 | 2018-05-13 | Added `StatPlots` package to extras                                                               |
 | 2018-05-23 | Improved comments in sections 1 do 5 by [Jane Herriman](https://github.com/xorJane)               |
 | 2018-07-25 | Update to 0.11.7 release                                                                          |
+| 2018-08-25 | Update to Julia 1.0 release                                                                       |
 
 # Core functions summary
 
@@ -75,4 +77,7 @@ Changelog:
     * [StatPlots](https://github.com/JuliaPlots/StatPlots.jl): `@df`, `plot`, `density`, `histogram`,`boxplot`, `violin`
 
 # Changes in DataFrames master since last update of the tutorial
+
+* Upcoming: Tables.jl integration
+* Change in handling ordered categorical values comparisons
 
