@@ -19,7 +19,7 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl),
 [StatPlots](https://github.com/JuliaPlots/StatPlots.jl).
 
-**Tutorial is updated to Julia 1.0 in sections from 1 to 11. Sections 12 and 13 are not updated yet**
+**Tutorial is updated to Julia 1.0 in sections from 1 to 11. Section 13 is not updated yet**
 
 # TOC
 
@@ -56,8 +56,8 @@ Changelog:
 | 2018-05-13 | Added `StatPlots` package to extras                          |
 | 2018-05-23 | Improved comments in sections 1 do 5 by [Jane Herriman](https://github.com/xorJane) |
 | 2018-07-25 | Update to 0.11.7 release                                     |
-| 2018-08-25 | Update to Julia 1.0 release sections 1 to 10                 |
-| 2018-08-29 | Update to Julia 1.0 release: section 11                      |
+| 2018-08-25 | Update to Julia 1.0 release: sections 1 to 10                |
+| 2018-08-29 | Update to Julia 1.0 release: sections 11 and 12              |
 
 # Core functions summary
 
