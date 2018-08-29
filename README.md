@@ -19,7 +19,7 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl),
 [StatPlots](https://github.com/JuliaPlots/StatPlots.jl).
 
-** Tutorial is updated to Julia 1.0 in sections from 1 to 10. Sections 11, 12 and 13 are not updated yet **
+**Tutorial is updated to Julia 1.0 in sections from 1 to 10. Sections 11, 12 and 13 are not updated yet**
 
 # TOC
 
@@ -41,22 +41,22 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 
 Changelog:
 
-| Date       | Changes                                                                                           |
-|------------|---------------------------------------------------------------------------------------------------|
-| 2017-12-05 | Initial release                                                                                   |
+| Date       | Changes                                                      |
+| ---------- | ------------------------------------------------------------ |
+| 2017-12-05 | Initial release                                              |
 | 2017-12-06 | Added description of `insert!`, `merge!`, `empty!`, `categorical!`, `delete!`, `DataFrames.index` |
-| 2017-12-09 | Added performance tips                                                                            |
-| 2017-12-10 | Added pitfalls                                                                                    |
-| 2017-12-18 | Added additional worthwhile packages: *FreqTables* and *DataFramesMeta*                           |
-| 2017-12-29 | Added description of `filter` and `filter!`                                                       |
-| 2017-12-31 | Added description of conversion to `Matrix`                                                       |
-| 2018-04-06 | Added example of extracting a row from a `DataFrame`                                              |
-| 2018-04-21 | Major update of whole tutorial                                                                    |
-| 2018-05-01 | Added `byrow!` example                                                                            |
-| 2018-05-13 | Added `StatPlots` package to extras                                                               |
-| 2018-05-23 | Improved comments in sections 1 do 5 by [Jane Herriman](https://github.com/xorJane)               |
-| 2018-07-25 | Update to 0.11.7 release                                                                          |
-| 2018-08-25 | Update to Julia 1.0 release                                                                       |
+| 2017-12-09 | Added performance tips                                       |
+| 2017-12-10 | Added pitfalls                                               |
+| 2017-12-18 | Added additional worthwhile packages: *FreqTables* and *DataFramesMeta* |
+| 2017-12-29 | Added description of `filter` and `filter!`                  |
+| 2017-12-31 | Added description of conversion to `Matrix`                  |
+| 2018-04-06 | Added example of extracting a row from a `DataFrame`         |
+| 2018-04-21 | Major update of whole tutorial                               |
+| 2018-05-01 | Added `byrow!` example                                       |
+| 2018-05-13 | Added `StatPlots` package to extras                          |
+| 2018-05-23 | Improved comments in sections 1 do 5 by [Jane Herriman](https://github.com/xorJane) |
+| 2018-07-25 | Update to 0.11.7 release                                     |
+| 2018-08-25 | Update to Julia 1.0 release sections 1 to 10                 |
 
 # Core functions summary
 
