@@ -2,8 +2,10 @@
 
 [Bogumił Kamiński](http://bogumilkaminski.pl/about/), August 29, 2018
 
+**The tutorial works with Julia 1.0, except for section on FreqTables which is commented out till this package is upgraded. A major change is moving from JLD to JLD2 package.**
+
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.0.0, DataFrames 0.13.1 (assumes patch https://github.com/JuliaData/DataFrames.jl/pull/1493 is merged), CSV 0.3.1, JLD2 0.1.1 (works under Julia 1.0 with patch https://github.com/simonster/JLD2.jl/pull/106), FileIO 1.0.1, CategoricalArrays 0.3.13, FreqTables 0.2.2 (not working under Julia 1.0 yet), DataFramesMeta 0.4.0, StatPlots 0.8.0. Also package `BencmarkTools` is used as a utility.
+Tested under Julia 1.0.0, DataFrames 0.13.1 (assumes patch https://github.com/JuliaData/DataFrames.jl/pull/1493 is merged), CSV 0.3.1, JLD2 0.1.1 (works under Julia 1.0 with patch https://github.com/simonster/JLD2.jl/pull/106), FileIO 1.0.1, CategoricalArrays 0.3.13, FreqTables 0.2.2 (not working under Julia 1.0 yet), DataFramesMeta 0.4.0, StatPlots 0.8.0+ (at least master for August 29, 2018 required). Also package `BencmarkTools` is used as a utility.
 
 I will try to keep it up to date as the package evolves.
 This tutorial covers
@@ -18,8 +20,6 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 [FreqTables](https://github.com/nalimilan/FreqTables.jl),
 [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl),
 [StatPlots](https://github.com/JuliaPlots/StatPlots.jl).
-
-**Tutorial is updated to Julia 1.0 in sections from 1 to 11. Section 13 is not updated yet**
 
 # TOC
 
@@ -57,14 +57,14 @@ Changelog:
 | 2018-05-23 | Improved comments in sections 1 do 5 by [Jane Herriman](https://github.com/xorJane) |
 | 2018-07-25 | Update to 0.11.7 release                                     |
 | 2018-08-25 | Update to Julia 1.0 release: sections 1 to 10                |
-| 2018-08-29 | Update to Julia 1.0 release: sections 11 and 12              |
+| 2018-08-29 | Update to Julia 1.0 release: sections 11, 12 and 13          |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`
 2. Getting summary: `size`, `nrow`, `ncol`, `length`, `describe`, `names`, `eltypes`, `head`, `tail`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, disallowmissing, disallowmissing!
-4. Loading and saving: `CSV` (package), `JLD` (package), `CSV.read`, `CSV.write`, `save` (from `JLD`), `load` (from `JLD`)
+4. Loading and saving: `CSV` (package), `JLD2` (package), `CSV.read`, `CSV.write`, `save/@save` (from `JLD2`), `load/@load` (from `JLD2`)
 5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insert!`, `DataFrames.hcat!`, `merge!`, `delete!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
