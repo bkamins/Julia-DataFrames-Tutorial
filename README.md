@@ -5,7 +5,7 @@
 **The tutorial works with Julia 1.0, except for section on FreqTables which is commented out till this package is upgraded. A major change is moving from JLD to JLD2 package.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.0.0, DataFrames 0.13.1 (assumes patch https://github.com/JuliaData/DataFrames.jl/pull/1493 is merged), CSV 0.3.1, JLD2 0.1.1 (works under Julia 1.0 with patch https://github.com/simonster/JLD2.jl/pull/106), FileIO 1.0.1, CategoricalArrays 0.3.13, FreqTables 0.2.2 (not working under Julia 1.0 yet), DataFramesMeta 0.4.0, StatPlots 0.8.0+ (at least master for August 29, 2018 required). Also package `BencmarkTools` is used as a utility.
+Tested under Julia 1.0.0, DataFrames 0.13.1 (at least master for August 31, 2018 required), CSV 0.3.1, JLD2 0.1.1 (works under Julia 1.0 with patch https://github.com/simonster/JLD2.jl/pull/106), FileIO 1.0.1, CategoricalArrays 0.3.13, FreqTables 0.2.2 (not working under Julia 1.0 yet), DataFramesMeta 0.4.0, StatPlots 0.8.0+ (at least master for August 29, 2018 required). Also package `BencmarkTools` is used as a utility.
 
 I will try to keep it up to date as the package evolves.
 This tutorial covers
