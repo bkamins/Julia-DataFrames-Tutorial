@@ -1,11 +1,13 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), September 10, 2018
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), September 26, 2018
 
 **The tutorial works with Julia 1.0. A major change is moving from JLD to JLD2 package.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.0.0, DataFrames 0.13.1 (at least master for August 31, 2018 required), CSV 0.3.1, CSVFiles 0.9.1, JLD2 0.1.2, FileIO 1.0.1, CategoricalArrays 0.3.13, FreqTables 0.3.0, DataFramesMeta 0.4.0, StatPlots 0.8.1. Also package `BencmarkTools` is used as a utility.
+Tested under Julia 1.0.0, DataFrames 0.14.0, CSV 0.4.0, CSVFiles 0.9.1, JLD2 0.1.2, FileIO 1.0.1, CategoricalArrays 0.3.14,
+FreqTables 0.3.0, DataFramesMeta 0.4.0, StatPlots 0.8.1.
+Also package `BencmarkTools` is used as a utility.
 
 I will try to keep it up to date as the package evolves.
 This tutorial covers
@@ -61,6 +63,7 @@ Changelog:
 | 2018-08-29 | Update to Julia 1.0 release: sections 11, 12 and 13          |
 | 2018-09-05 | Update to Julia 1.0 release: FreqTables section              |
 | 2018-09-10 | Added CSVFiles section to chapter on load/save               |
+| 2018-09-26 | Updated to DataFrames 0.14.0                                 |
 
 # Core functions summary
 
@@ -82,7 +85,5 @@ Changelog:
 
 # Changes in DataFrames master since last update of the tutorial
 
-* Upcoming: Tables.jl integration
-* Change of CSV.jl API
-* Change in handling ordered categorical values comparisons
-
+* Changes to how `getindex` works
+* explain `view` and `DataFrameRow` better
