@@ -1,15 +1,16 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), September 26, 2018
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), October 4, 2018
 
-**The tutorial works with Julia 1.0. A major change is moving from JLD to JLD2 package.**
+**The tutorial works with Julia 1.0.1. A major change is moving from JLD to JLD2 package.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.0.0, DataFrames 0.14.0, CSV 0.4.0, CSVFiles 0.9.1, JLD2 0.1.2, FileIO 1.0.1, CategoricalArrays 0.3.14,
-FreqTables 0.3.0, DataFramesMeta 0.4.0, StatPlots 0.8.1.
-Also package `BenchmarkTools` is used as a utility.
+Tested under Julia 1.0.1, CSV 0.4.1, CSVFiles 0.9.1, CategoricalArrays 0.4.0, DataFrames 0.14.1,
+DataFramesMeta 0.4.0, FileIO 1.0.1, FreqTables 0.3.0, JLD2 0.1.2, StatPlots 0.8.1.
+Also package `BenchmarkTools 0.4.1` is used as a utility.
 
-I will try to keep it up to date as the package evolves.
+I will try to keep the material up to date as the packages evolve.
+
 This tutorial covers
 [DataFrames](https://github.com/JuliaData/DataFrames.jl),
 [CSV](https://github.com/JuliaData/CSV.jl),
@@ -64,6 +65,7 @@ Changelog:
 | 2018-09-05 | Update to Julia 1.0 release: FreqTables section              |
 | 2018-09-10 | Added CSVFiles section to chapter on load/save               |
 | 2018-09-26 | Updated to DataFrames 0.14.0                                 |
+| 2018-10-04 | Updated to DataFrames 0.14.1, added `haskey` and `repeat`    |
 
 # Core functions summary
 
@@ -71,8 +73,8 @@ Changelog:
 2. Getting summary: `size`, `nrow`, `ncol`, `length`, `describe`, `names`, `eltypes`, `head`, `tail`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, disallowmissing, disallowmissing!
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `JLD2` (package), `CSV.read`, `CSV.write`, `save`, `@save` (from `JLD2`), `load`, `@load` (from `JLD2`)
-5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insert!`, `DataFrames.hcat!`, `merge!`, `delete!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`
-6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`
+5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insert!`, `DataFrames.hcat!`, `merge!`, `delete!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`, `haskey`
+6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
 9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
