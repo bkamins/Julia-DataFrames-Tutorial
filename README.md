@@ -1,12 +1,12 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), October 4, 2018
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), December 9, 2018
 
-**The tutorial works with Julia 1.0.1. A major change is moving from JLD to JLD2 package.**
+**The tutorial is for DataFrames 0.15.2 and works with Julia 1.0.2.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.0.1, CSV 0.4.1, CSVFiles 0.9.1, CategoricalArrays 0.4.0, DataFrames 0.14.1,
-DataFramesMeta 0.4.0, FileIO 1.0.1, FreqTables 0.3.0, JLD2 0.1.2, StatPlots 0.8.1.
+Tested under Julia 1.0.2, CSV 0.4.3, CSVFiles 0.10.0, CategoricalArrays 0.5.1, DataFrames 0.15.2,
+DataFramesMeta 0.4.0, FileIO 1.0.4, FreqTables 0.3.1, JLD2 0.1.2, StatPlots 0.8.2.
 Also package `BenchmarkTools 0.4.1` is used as a utility.
 
 I will try to keep the material up to date as the packages evolve.
@@ -66,19 +66,20 @@ Changelog:
 | 2018-09-10 | Added CSVFiles section to chapter on load/save               |
 | 2018-09-26 | Updated to DataFrames 0.14.0                                 |
 | 2018-10-04 | Updated to DataFrames 0.14.1, added `haskey` and `repeat`    |
+| 2018-12-08 | Updated to DataFrames 0.15.2                                 |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`
-2. Getting summary: `size`, `nrow`, `ncol`, `length`, `describe`, `names`, `eltypes`, `head`, `tail`
-3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, disallowmissing, disallowmissing!
+2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`
+3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `JLD2` (package), `CSV.read`, `CSV.write`, `save`, `@save` (from `JLD2`), `load`, `@load` (from `JLD2`)
-5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insert!`, `DataFrames.hcat!`, `merge!`, `delete!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`, `haskey`
+5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `deletecols!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`, `haskey`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
 9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
-10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `colwise`
+10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `colwise`, `mapcols`
 11. Extras:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
@@ -86,6 +87,3 @@ Changelog:
     * [StatPlots](https://github.com/JuliaPlots/StatPlots.jl): `@df`, `plot`, `density`, `histogram`,`boxplot`, `violin`
 
 # Changes in DataFrames master since last update of the tutorial
-
-* Changes to how `getindex` works
-* explain `view` and `DataFrameRow` better
