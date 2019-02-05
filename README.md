@@ -1,13 +1,13 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), January 30, 2019
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), February 5, 2019
 
-**The tutorial is for DataFrames 0.17.0 and works with Julia 1.0.3.**
+**The tutorial is for DataFrames 0.17.1.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.0.3, CSV 0.4.3, CSVFiles 0.13.0, CategoricalArrays 0.5.2,
-DataFrames 0.17.0, DataFramesMeta 0.4.0, Feather 0.5.1, FileIO 1.0.5, FreqTables 0.3.1,
-JLD2 0.1.2, StatsPlots 0.10.0, Tables 0.1.14.
+Tested under Julia 1.1, CSV 0.4.3, CSVFiles 0.14.0, CategoricalArrays 0.5.2,
+DataFrames 0.17.1, DataFramesMeta 0.4.0, Feather 0.5.1, FileIO 1.0.5, FreqTables 0.3.1,
+JLD2 0.1.2, StatsPlots 0.10.1, Tables 0.1.15.
 Also package BenchmarkTools 0.4.2 is used as a utility.
 
 I will try to keep the material up to date as the packages evolve.
