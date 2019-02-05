@@ -6,7 +6,7 @@
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 Tested under Julia 1.1, CSV 0.4.3, CSVFiles 0.14.0, CategoricalArrays 0.5.2,
-DataFrames 0.17.1, DataFramesMeta 0.4.0, Feather 0.5.1, FileIO 1.0.5, FreqTables 0.3.1,
+DataFrames 0.17.1, DataFramesMeta 0.4.1, Feather 0.5.1, FileIO 1.0.5, FreqTables 0.3.1,
 JLD2 0.1.2, StatsPlots 0.10.1, Tables 0.1.15.
 Also package BenchmarkTools 0.4.2 is used as a utility.
 
@@ -72,7 +72,8 @@ Changelog:
 | 2018-01-03 | Updated to DataFrames 0.16.0, added serialization instructions |
 | 2018-01-18 | Updated to DataFrames 0.17.0, added `passmissing` |
 | 2018-01-27 | Added Feather.jl file read/write |
-| 2018-01-27 | Renamed StatPlots.jl to StatsPlots.jl and added Tables.jl|
+| 2018-01-30 | Renamed StatPlots.jl to StatsPlots.jl and added Tables.jl|
+| 2018-02-08 | Added `groupvars` and `groupindices` functions|
 
 # Core functions summary
 
@@ -85,7 +86,7 @@ Changelog:
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
 9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
-10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `colwise`, `mapcols`, `parent`
+10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `colwise`, `mapcols`, `parent`, `groupvars`, `groupindices`
 11. Extras:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
