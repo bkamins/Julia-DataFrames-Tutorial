@@ -1,13 +1,13 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), February 5, 2019
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), April 27, 2019
 
-**The tutorial is for DataFrames 0.17.1.**
+**The tutorial is for DataFrames 0.18.0.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 Tested under Julia 1.1, CSV 0.4.3, CSVFiles 0.14.0, CategoricalArrays 0.5.2,
 DataFrames 0.17.1, DataFramesMeta 0.4.1, Feather 0.5.1, FileIO 1.0.5, FreqTables 0.3.1,
-JLD2 0.1.2, StatsPlots 0.10.1, Tables 0.1.15.
+StatsPlots 0.10.1, Tables 0.1.15.
 Also package BenchmarkTools 0.4.2 is used as a utility.
 
 I will try to keep the material up to date as the packages evolve.
@@ -16,7 +16,6 @@ This tutorial covers
 [DataFrames](https://github.com/JuliaData/DataFrames.jl),
 [CSV](https://github.com/JuliaData/CSV.jl),
 [CSVFiles](https://github.com/queryverse/CSVFiles.jl),
-[JLD2](https://github.com/JuliaIO/JLD2.jl),
 [Feather](https://github.com/JuliaData/Feather.jl),
 and [CategoricalArrays](https://github.com/JuliaData/CategoricalArrays.jl),
 as they constitute the core of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
@@ -74,14 +73,15 @@ Changelog:
 | 2018-01-27 | Added Feather.jl file read/write |
 | 2018-01-30 | Renamed StatPlots.jl to StatsPlots.jl and added Tables.jl|
 | 2018-02-08 | Added `groupvars` and `groupindices` functions|
+| 2018-04-27 | Updated to DataFrames 0.18.0, dropped JLD2.jl |
 
 # Core functions summary
 
-1. Constructors: `DataFrame`, `Tables.rowtable`, `Tables.columntable`, `Matrix`
+1. Constructors: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`
 2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
-4. Loading and saving: `CSV` (package), `CSVFiles` (package), `JLD2` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `@save` (from `JLD2`), `load`, `@load` (from `JLD2`), `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather`)
-5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `deletecols!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`, `haskey`
+4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather`)
+5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `deletecols`, `deletecols!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`, `haskey`, `select`, `select!`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
