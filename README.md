@@ -5,9 +5,9 @@
 **The tutorial is for DataFrames 0.18.0.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.1, CSV 0.4.3, CSVFiles 0.14.0, CategoricalArrays 0.5.2,
-DataFrames 0.17.1, DataFramesMeta 0.4.1, Feather 0.5.1, FileIO 1.0.5, FreqTables 0.3.1,
-StatsPlots 0.10.1, Tables 0.1.15.
+Tested under Julia 1.1, CSV 0.4.3, CSVFiles 0.15.0, CategoricalArrays 0.5.2,
+DataFrames 0.18.0, DataFramesMeta 0.4.1, Feather 0.5.1, FileIO 1.0.6, FreqTables 0.3.1,
+PooledArrays 0.5.1, StatsPlots 0.10.2, Tables 0.1.19.
 Also package BenchmarkTools 0.4.2 is used as a utility.
 
 I will try to keep the material up to date as the packages evolve.
@@ -86,7 +86,7 @@ Changelog:
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
 9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
-10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `colwise`, `mapcols`, `parent`, `groupvars`, `groupindices`
+10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `mapcols`, `parent`, `groupvars`, `groupindices`
 11. Extras:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
