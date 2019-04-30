@@ -1,12 +1,12 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), April 27, 2019
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), April 30, 2019
 
-**The tutorial is for DataFrames 0.18.0.**
+**The tutorial is for DataFrames 0.18.1.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 Tested under Julia 1.1, CSV 0.4.3, CSVFiles 0.15.0, CategoricalArrays 0.5.2,
-DataFrames 0.18.0, DataFramesMeta 0.4.1, Feather 0.5.1, FileIO 1.0.6, FreqTables 0.3.1,
+DataFrames 0.18.1, DataFramesMeta 0.4.1, Feather 0.5.1, FileIO 1.0.6, FreqTables 0.3.1,
 PooledArrays 0.5.1, StatsPlots 0.10.2, Tables 0.1.19.
 Also package BenchmarkTools 0.4.2 is used as a utility.
 
@@ -74,12 +74,13 @@ Changelog:
 | 2018-01-30 | Renamed StatPlots.jl to StatsPlots.jl and added Tables.jl|
 | 2018-02-08 | Added `groupvars` and `groupindices` functions|
 | 2018-04-27 | Updated to DataFrames 0.18.0, dropped JLD2.jl |
+| 2018-04-30 | Updated handling of missing values description |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`
 2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`
-3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
+3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather`)
 5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `deletecols`, `deletecols!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`, `haskey`, `select`, `select!`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`
