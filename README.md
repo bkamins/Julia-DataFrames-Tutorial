@@ -26,6 +26,12 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl),
 [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl).
 
+# Setting up Jupyter Notebook for work with DataFrames.jl
+
+By default Jupyter Notebook will limit the number of rows and columns when displaying a data frame to roughly fit the screen size (like in the REPL).
+
+You can override this behavior by setting `ENV["COLUMNS"]` or `ENV["LINES"]` variables to hold the maximum width and height of output in characters respectively before using the `notebook`. Alternatively you can add the following entry `"COLUMNS": "1000", "LINES": "100"` to `"env"` variable in your Jupyter kernel file. See [here](https://jupyter-client.readthedocs.io/en/stable/kernels.html) for information about location and specification of Jupyter kernels.
+
 # TOC
 
 | File                                                                                                              | Topic                             |
