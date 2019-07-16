@@ -1,13 +1,13 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), April 30, 2019
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), July 16, 2019
 
-**The tutorial is for DataFrames 0.18.1.**
+**The tutorial is for DataFrames 0.19.0.**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.1, CSV 0.4.3, CSVFiles 0.15.0, CategoricalArrays 0.5.2,
-DataFrames 0.18.1, DataFramesMeta 0.4.1, Feather 0.5.1, FileIO 1.0.6, FreqTables 0.3.1,
-PooledArrays 0.5.1, StatsPlots 0.10.2, Tables 0.1.19.
+Tested under Julia 1.1, CSV 0.5.9, CSVFiles 0.15.0, CategoricalArrays 0.5.4,
+DataFrames 0.19.0, DataFramesMeta 0.5.0, Feather 0.5.3, FileIO 1.0.7, FreqTables 0.3.1,
+PooledArrays 0.5.2, StatsPlots 0.11.0, Tables 0.2.9.
 Also package BenchmarkTools 0.4.2 is used as a utility.
 
 I will try to keep the material up to date as the packages evolve.
@@ -81,6 +81,7 @@ Changelog:
 | 2018-02-08 | Added `groupvars` and `groupindices` functions|
 | 2018-04-27 | Updated to DataFrames 0.18.0, dropped JLD2.jl |
 | 2018-04-30 | Updated handling of missing values description |
+| 2018-07-16 | Updated to DataFrames 0.19.0 |
 
 # Core functions summary
 
@@ -88,7 +89,7 @@ Changelog:
 2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather`)
-5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `deletecols`, `deletecols!`, `empty!`, `categorical!`, `DataFrames.index`, `permutedims!`, `haskey`, `select`, `select!`
+5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `categorical!`, `DataFrames.index`, `permutedims!`, `hasproperty`, `select`, `select!`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
