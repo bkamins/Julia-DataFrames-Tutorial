@@ -2,13 +2,39 @@
 
 [Bogumił Kamiński](http://bogumilkaminski.pl/about/), August 16, 2019
 
-**The tutorial is for DataFrames 0.19.0.**
+**The tutorial is for DataFrames 0.19.2**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
-Tested under Julia 1.1, CSV 0.5.9, CSVFiles 0.15.0, CategoricalArrays 0.5.4,
-DataFrames 0.19.0, DataFramesMeta 0.5.0, Feather 0.5.3, FileIO 1.0.7, FreqTables 0.3.1,
-JSONTables v0.1.2, PooledArrays 0.5.2, StatsPlots 0.11.0, Tables 0.2.9.
-Also package BenchmarkTools 0.4.2 is used as a utility.
+
+The tutorial contains a specification of the project environment version under which it should be run.
+In order to prepare this environment, before using the tutorial notebooks,
+while in the project folder run the following command in the command line:
+
+```
+julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
+```
+
+Tested under Julia 1.1. The project dependencies are the following:
+
+```
+  [6e4b80f9] + BenchmarkTools v0.4.2
+  [336ed68f] + CSV v0.5.11
+  [5d742f6a] + CSVFiles v0.15.0
+  [324d7699] + CategoricalArrays v0.5.5
+  [a93c6f00] + DataFrames v0.19.2
+  [1313f7d8] + DataFramesMeta v0.5.0
+  [becb17da] + Feather v0.5.3
+  [5789e2e9] + FileIO v1.0.7
+  [da1fdf0e] + FreqTables v0.3.1
+  [7073ff75] + IJulia v1.19.0
+  [b9914132] + JSONTables v0.1.2
+  [86f7a689] + NamedArrays v0.9.3
+  [2dfb63ee] + PooledArrays v0.5.2
+  [f3b207a7] + StatsPlots v0.11.0
+  [bd369af6] + Tables v0.2.11
+  [9a3f8284] + Random
+  [10745b16] + Statistics
+```
 
 I will try to keep the material up to date as the packages evolve.
 
