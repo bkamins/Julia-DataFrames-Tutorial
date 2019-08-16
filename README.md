@@ -110,6 +110,7 @@ Changelog:
 | 2019-04-30 | Updated handling of missing values description |
 | 2019-07-16 | Updated to DataFrames 0.19.0 |
 | 2019-08-14 | Added JSONTables.jl and `Tables.columnindex` |
+| 2019-08-16 | Added Project.toml and Manifest.toml |
 
 # Core functions summary
 
