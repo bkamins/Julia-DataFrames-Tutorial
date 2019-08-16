@@ -75,15 +75,15 @@ Changelog:
 | 2018-09-26 | Updated to DataFrames 0.14.0                                 |
 | 2018-10-04 | Updated to DataFrames 0.14.1, added `haskey` and `repeat`    |
 | 2018-12-08 | Updated to DataFrames 0.15.2                                 |
-| 2018-01-03 | Updated to DataFrames 0.16.0, added serialization instructions |
-| 2018-01-18 | Updated to DataFrames 0.17.0, added `passmissing` |
-| 2018-01-27 | Added Feather.jl file read/write |
-| 2018-01-30 | Renamed StatPlots.jl to StatsPlots.jl and added Tables.jl|
-| 2018-02-08 | Added `groupvars` and `groupindices` functions|
-| 2018-04-27 | Updated to DataFrames 0.18.0, dropped JLD2.jl |
-| 2018-04-30 | Updated handling of missing values description |
-| 2018-07-16 | Updated to DataFrames 0.19.0 |
-| 2018-08-14 | Added JSONTables.jl and `Tables.columnindex` |
+| 2019-01-03 | Updated to DataFrames 0.16.0, added serialization instructions |
+| 2019-01-18 | Updated to DataFrames 0.17.0, added `passmissing` |
+| 2019-01-27 | Added Feather.jl file read/write |
+| 2019-01-30 | Renamed StatPlots.jl to StatsPlots.jl and added Tables.jl|
+| 2019-02-08 | Added `groupvars` and `groupindices` functions|
+| 2019-04-27 | Updated to DataFrames 0.18.0, dropped JLD2.jl |
+| 2019-04-30 | Updated handling of missing values description |
+| 2019-07-16 | Updated to DataFrames 0.19.0 |
+| 2019-08-14 | Added JSONTables.jl and `Tables.columnindex` |
 
 # Core functions summary
 
