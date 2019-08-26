@@ -1,8 +1,8 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), August 16, 2019
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), August 26, 2019
 
-**The tutorial is for DataFrames 0.19.2**
+**The tutorial is for DataFrames 0.19.3**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -14,26 +14,26 @@ while in the project folder run the following command in the command line:
 julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
-Tested under Julia 1.1. The project dependencies are the following:
+Tested under Julia 1.2. The project dependencies are the following:
 
 ```
-  [6e4b80f9] + BenchmarkTools v0.4.2
-  [336ed68f] + CSV v0.5.11
-  [5d742f6a] + CSVFiles v0.15.0
-  [324d7699] + CategoricalArrays v0.5.5
-  [a93c6f00] + DataFrames v0.19.2
-  [1313f7d8] + DataFramesMeta v0.5.0
-  [becb17da] + Feather v0.5.3
-  [5789e2e9] + FileIO v1.0.7
-  [da1fdf0e] + FreqTables v0.3.1
-  [7073ff75] + IJulia v1.19.0
-  [b9914132] + JSONTables v0.1.2
-  [86f7a689] + NamedArrays v0.9.3
-  [2dfb63ee] + PooledArrays v0.5.2
-  [f3b207a7] + StatsPlots v0.11.0
-  [bd369af6] + Tables v0.2.11
-  [9a3f8284] + Random
-  [10745b16] + Statistics
+  [6e4b80f9] BenchmarkTools v0.4.2
+  [336ed68f] CSV v0.5.11
+  [5d742f6a] CSVFiles v0.15.0
+  [324d7699] CategoricalArrays v0.5.5
+  [a93c6f00] DataFrames v0.19.3
+  [1313f7d8] DataFramesMeta v0.5.0
+  [becb17da] Feather v0.5.3
+  [5789e2e9] FileIO v1.0.7
+  [da1fdf0e] FreqTables v0.3.1
+  [7073ff75] IJulia v1.19.0
+  [b9914132] JSONTables v0.1.2
+  [86f7a689] NamedArrays v0.9.3
+  [2dfb63ee] PooledArrays v0.5.2
+  [f3b207a7] StatsPlots v0.11.0
+  [bd369af6] Tables v0.2.11
+  [9a3f8284] Random
+  [10745b16] Statistics
 ```
 
 I will try to keep the material up to date as the packages evolve.
@@ -111,6 +111,7 @@ Changelog:
 | 2019-07-16 | Updated to DataFrames 0.19.0 |
 | 2019-08-14 | Added JSONTables.jl and `Tables.columnindex` |
 | 2019-08-16 | Added Project.toml and Manifest.toml |
+| 2019-08-26 | Update to Julia 1.2 and DataFrames 0.19.3 |
 
 # Core functions summary
 
@@ -118,7 +119,7 @@ Changelog:
 2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather` package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`
-5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `categorical!`, `DataFrames.index`, `permutedims!`, `hasproperty`, `select`, `select!`, `Tables.columnindex`
+5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `categorical!`, `DataFrames.index`, `permutedims!`, `hasproperty`, `select`, `select!`, `columnindex`, `Not`, `All`, `Between`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
