@@ -1,6 +1,6 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), August 26, 2019
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), August 29, 2019
 
 **The tutorial is for DataFrames 0.19.3**
 
@@ -21,6 +21,7 @@ Tested under Julia 1.2. The project dependencies are the following:
   [336ed68f] CSV v0.5.11
   [5d742f6a] CSVFiles v0.15.0
   [324d7699] CategoricalArrays v0.5.5
+  [944b1d66] CodecZlib v0.6.0
   [a93c6f00] DataFrames v0.19.3
   [1313f7d8] DataFramesMeta v0.5.0
   [becb17da] Feather v0.5.3
@@ -112,13 +113,14 @@ Changelog:
 | 2019-08-14 | Added JSONTables.jl and `Tables.columnindex` |
 | 2019-08-16 | Added Project.toml and Manifest.toml |
 | 2019-08-26 | Update to Julia 1.2 and DataFrames 0.19.3 |
+| 2019-08-29 | Add example how to compress/decompress CSV file using CodecZlib |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`
 2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
-4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather` package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`
+4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather` package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`
 5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `categorical!`, `DataFrames.index`, `permutedims!`, `hasproperty`, `select`, `select!`, `columnindex`, `Not`, `All`, `Between`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
