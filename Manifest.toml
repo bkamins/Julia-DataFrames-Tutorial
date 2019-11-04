@@ -83,7 +83,6 @@ version = "0.2.3"
 [[CSV]]
 deps = ["CategoricalArrays", "DataFrames", "Dates", "Mmap", "Parsers", "PooledArrays", "Profile", "Tables", "Unicode", "WeakRefStrings"]
 git-tree-sha1 = "35205137ee2f5a9c1f358407e9ed0f1a17878919"
-pinned = true
 uuid = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 version = "0.5.11"
 
@@ -378,7 +377,6 @@ version = "1.0.0"
 [[JDF]]
 deps = ["Blosc", "BufferedStreams", "CSV", "CategoricalArrays", "DataFrames", "Missings", "Serialization", "StatsBase", "TimeZones", "WeakRefStrings"]
 git-tree-sha1 = "40fbf075904769107796440c352de6dfc3654de5"
-pinned = true
 uuid = "babc3d20-cd49-4f60-a736-a8f9c08892d3"
 version = "0.2.4"
 
