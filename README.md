@@ -28,6 +28,7 @@ Tested under Julia 1.2. The project dependencies are the following:
   [5789e2e9] FileIO v1.0.7
   [da1fdf0e] FreqTables v0.3.1
   [7073ff75] IJulia v1.19.0
+  [babc3d20] JDF v0.2.4
   [9da8a3cd] JLSO v1.1.0
   [b9914132] JSONTables v0.1.2
   [86f7a689] NamedArrays v0.9.3
@@ -114,13 +115,14 @@ Changelog:
 | 2019-08-26 | Update to Julia 1.2 and DataFrames 0.19.3 |
 | 2019-08-29 | Add example how to compress/decompress CSV file using CodecZlib |
 | 2019-08-30 | Add examples of JLSO.jl and ZipFile.jl by [xiaodaigh](https://github.com/xiaodaigh) |
+| 2019-11-03 | Add examples of JDF.jl by [xiaodaigh](https://github.com/xiaodaigh) |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`
 2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
-4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather` package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
+4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather` package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.savejdf`, `JDF.loadjdf`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
 5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `categorical!`, `DataFrames.index`, `permutedims!`, `hasproperty`, `select`, `select!`, `columnindex`, `Not`, `All`, `Between`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
