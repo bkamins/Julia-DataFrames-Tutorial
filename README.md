@@ -1,8 +1,8 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), August 30, 2019
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), December 8, 2019
 
-**The tutorial is for DataFrames 0.19.3**
+**The tutorial is for DataFrames 0.20.0**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -14,26 +14,26 @@ while in the project folder run the following command in the command line:
 julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
-Tested under Julia 1.2. The project dependencies are the following:
+Tested under Julia 1.3. The project dependencies are the following:
 
 ```
-  [6e4b80f9] BenchmarkTools v0.4.2
-  [336ed68f] CSV v0.5.11
-  [5d742f6a] CSVFiles v0.15.0
-  [324d7699] CategoricalArrays v0.5.5
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [336ed68f] CSV v0.5.18
+  [5d742f6a] CSVFiles v0.16.1
+  [324d7699] CategoricalArrays v0.7.4
   [944b1d66] CodecZlib v0.6.0
-  [a93c6f00] DataFrames v0.19.3
+  [a93c6f00] DataFrames v0.20.0
   [1313f7d8] DataFramesMeta v0.5.0
-  [becb17da] Feather v0.5.3
-  [5789e2e9] FileIO v1.0.7
+  [becb17da] Feather v0.5.4
+  [5789e2e9] FileIO v1.1.0
   [da1fdf0e] FreqTables v0.3.1
-  [7073ff75] IJulia v1.19.0
-  [babc3d20] JDF v0.2.4
-  [9da8a3cd] JLSO v1.1.0
-  [b9914132] JSONTables v0.1.2
+  [7073ff75] IJulia v1.20.2
+  [babc3d20] JDF v0.2.9
+  [9da8a3cd] JLSO v1.3.0
+  [b9914132] JSONTables v0.1.3
   [86f7a689] NamedArrays v0.9.3
   [2dfb63ee] PooledArrays v0.5.2
-  [f3b207a7] StatsPlots v0.11.0
+  [f3b207a7] StatsPlots v0.13.0
   [bd369af6] Tables v0.2.11
   [a5390f91] ZipFile v0.8.3
   [9a3f8284] Random
@@ -116,19 +116,20 @@ Changelog:
 | 2019-08-29 | Add example how to compress/decompress CSV file using CodecZlib |
 | 2019-08-30 | Add examples of JLSO.jl and ZipFile.jl by [xiaodaigh](https://github.com/xiaodaigh) |
 | 2019-11-03 | Add examples of JDF.jl by [xiaodaigh](https://github.com/xiaodaigh) |
+| 2019-12-08 | Updated to DataFrames 0.20.0 |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`
 2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`
-3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `Missings.T`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
+3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `nonmissingtype`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Feather.write`, `Feather.read`, `Feather.materialize` (from `Feather` package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.savejdf`, `JDF.loadjdf`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
 5. Working with columns: `rename`, `rename!`, `names!`, `hcat`, `insertcol!`, `DataFrames.hcat!`, `categorical!`, `DataFrames.index`, `permutedims!`, `hasproperty`, `select`, `select!`, `columnindex`, `Not`, `All`, `Between`
 6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleterows!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
 8. Joining: `join`
 9. Reshaping: `stack`, `melt`, `stackdf`, `meltdf`, `unstack`
-10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `mapcols`, `parent`, `groupvars`, `groupindices`
+10. Transforming: `groupby`, `vcat`, `by`, `aggregate`, `eachcol`, `eachrow`, `mapcols`, `parent`, `groupvars`, `groupindices`, `keys` (for `GroupedDataFrame`)
 11. Extras:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
