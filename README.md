@@ -14,29 +14,29 @@ while in the project folder run the following command in the command line:
 julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
-Tested under Julia 1.3. The project dependencies are the following:
+Tested under Julia 1.4.1. The project dependencies are the following:
 
 ```
   [6e4b80f9] BenchmarkTools v0.5.0
   [336ed68f] CSV v0.6.2
-  [5d742f6a] CSVFiles v1.0.0          # not checked yet with 0.21.0 release
+  [5d742f6a] CSVFiles v1.0.0
   [324d7699] CategoricalArrays v0.8.0
-  [944b1d66] CodecZlib v0.6.0         # not checked yet with 0.21.0 release
+  [944b1d66] CodecZlib v0.6.0
   [a93c6f00] DataFrames v0.21.0
-  [1313f7d8] DataFramesMeta v0.5.0    # not checked yet with 0.21.0 release
-  [becb17da] Feather v0.4.0           # not checked yet with 0.21.0 release
-  [5789e2e9] FileIO v1.3.0            # not checked yet with 0.21.0 release
-  [da1fdf0e] FreqTables v0.3.0        # not checked yet with 0.21.0 release
+  [1313f7d8] DataFramesMeta v0.5.0
+  [becb17da] Feather v0.5.6
+  [5789e2e9] FileIO v1.3.0
+  [da1fdf0e] FreqTables v0.3.0
   [7073ff75] IJulia v1.21.2
-  [babc3d20] JDF v0.2.15              # not checked yet with 0.21.0 release
-  [9da8a3cd] JLSO v2.3.2              # not checked yet with 0.21.0 release
-  [b9914132] JSONTables v1.0.0        # not checked yet with 0.21.0 release
-  [86f7a689] NamedArrays v0.9.4       # not checked yet with 0.21.0 release
+  [babc3d20] JDF v0.2.15
+  [9da8a3cd] JLSO v2.3.2
+  [b9914132] JSONTables v1.0.0
+  [86f7a689] NamedArrays v0.9.4
   [b98c9c47] Pipe v1.2.0
   [2dfb63ee] PooledArrays v0.5.3
-  [f3b207a7] StatsPlots v0.14.5       # not checked yet with 0.21.0 release
+  [f3b207a7] StatsPlots v0.14.5
   [bd369af6] Tables v1.0.4
-  [a5390f91] ZipFile v0.9.1           # not checked yet with 0.21.0 release
+  [a5390f91] ZipFile v0.9.1
   [9a3f8284] Random
   [10745b16] Statistics
   ```
@@ -59,7 +59,7 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 
 By default Jupyter Notebook will limit the number of rows and columns when displaying a data frame to roughly fit the screen size (like in the REPL).
 
-You can override this behavior by setting `ENV["COLUMNS"]` or `ENV["LINES"]` variables to hold the maximum width and height of output in characters respectively before using the `notebook` function. Alternatively you can add the following entry `"COLUMNS": "1000", "LINES": "100"` to `"env"` variable in your Jupyter kernel file. See [here](https://jupyter-client.readthedocs.io/en/stable/kernels.html) for information about location and specification of Jupyter kernels.
+You can override this behavior by setting `ENV["COLUMNS"]` or `ENV["LINES"]` variables to hold the maximum width and height of output in characters respectively when running a notebook. Alternatively you can add the following entry `"COLUMNS": "1000", "LINES": "100"` to `"env"` variable in your Jupyter kernel file. See [here](https://jupyter-client.readthedocs.io/en/stable/kernels.html) for information about location and specification of Jupyter kernels.
 
 # TOC
 
@@ -133,7 +133,7 @@ Changelog:
 9. Reshaping: `stack`, `unstack`
 10. Transforming: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@pipe` (from `Pipe` package)
 11. Extras:
-    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
+    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop` (to be updated, the package is not fully synced with DataFrames 0.21 yet)
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
-      `by`, `based_on`, `byrow!`
+      `by`, `based_on`, `byrow!` (to be updated, the package is not fully synced with DataFrames 0.21 yet)
     * [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl): `@df`, `plot`, `density`, `histogram`,`boxplot`, `violin`
