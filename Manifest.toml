@@ -177,9 +177,9 @@ version = "0.21.0"
 
 [[DataFramesMeta]]
 deps = ["DataFrames", "Tables"]
-git-tree-sha1 = "8a6dd4f640dd6b729f5d1f0d80d475fbf60b32af"
+git-tree-sha1 = "4e2ba678c7a624c963ac09f68f9b6086607377a4"
 uuid = "1313f7d8-7da2-5740-9ea0-a2ca25f37964"
-version = "0.5.0"
+version = "0.5.1"
 
 [[DataStructures]]
 deps = ["InteractiveUtils", "OrderedCollections"]

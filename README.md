@@ -23,7 +23,7 @@ Tested under Julia 1.4.1. The project dependencies are the following:
   [324d7699] CategoricalArrays v0.8.0
   [944b1d66] CodecZlib v0.6.0
   [a93c6f00] DataFrames v0.21.0
-  [1313f7d8] DataFramesMeta v0.5.0
+  [1313f7d8] DataFramesMeta v0.5.1
   [becb17da] Feather v0.5.6
   [5789e2e9] FileIO v1.3.0
   [da1fdf0e] FreqTables v0.3.3
@@ -133,7 +133,7 @@ Changelog:
 9. Reshaping: `stack`, `unstack`
 10. Transforming: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@pipe` (from `Pipe` package)
 11. Extras:
-    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
+    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`, `Name`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
-      `by`, `based_on`, `byrow!` (to be updated, the package is not fully synced with DataFrames 0.21 yet)
+      `by`, `based_on`, `byrow!`
     * [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl): `@df`, `plot`, `density`, `histogram`,`boxplot`, `violin`
