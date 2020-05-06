@@ -332,10 +332,10 @@ uuid = "d7e528f0-a631-5988-bf34-fe36492bcfd7"
 version = "2.10.1+2"
 
 [[FreqTables]]
-deps = ["CategoricalArrays", "DataFrames", "NamedArrays", "Test"]
-git-tree-sha1 = "93c716efd3c37f80c4537959fc55311ab530850d"
+deps = ["CategoricalArrays", "Missings", "NamedArrays", "Tables"]
+git-tree-sha1 = "6a0ac08f36a2ba89bf4e23dec2b974d3dbd79856"
 uuid = "da1fdf0e-e0ff-5433-a45f-9bb5ff651cb1"
-version = "0.3.0"
+version = "0.3.3"
 
 [[FriBidi_jll]]
 deps = ["Libdl", "Pkg"]
@@ -655,9 +655,9 @@ version = "0.12.0"
 
 [[Parsers]]
 deps = ["Dates", "Test"]
-git-tree-sha1 = "f8f5d2d4b4b07342e5811d2b6428e45524e241df"
+git-tree-sha1 = "72c3451932513427caffbd8bab15643ad693804b"
 uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "1.0.2"
+version = "1.0.3"
 
 [[Pipe]]
 git-tree-sha1 = "f11840ebaf295b39319c2750f158621a96173fc5"

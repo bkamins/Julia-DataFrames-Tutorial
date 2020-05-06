@@ -26,7 +26,7 @@ Tested under Julia 1.4.1. The project dependencies are the following:
   [1313f7d8] DataFramesMeta v0.5.0
   [becb17da] Feather v0.5.6
   [5789e2e9] FileIO v1.3.0
-  [da1fdf0e] FreqTables v0.3.0
+  [da1fdf0e] FreqTables v0.3.3
   [7073ff75] IJulia v1.21.2
   [babc3d20] JDF v0.2.15
   [9da8a3cd] JLSO v2.3.2
@@ -133,7 +133,7 @@ Changelog:
 9. Reshaping: `stack`, `unstack`
 10. Transforming: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@pipe` (from `Pipe` package)
 11. Extras:
-    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop` (to be updated, the package is not fully synced with DataFrames 0.21 yet)
+    * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`,
       `by`, `based_on`, `byrow!` (to be updated, the package is not fully synced with DataFrames 0.21 yet)
     * [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl): `@df`, `plot`, `density`, `histogram`,`boxplot`, `violin`
