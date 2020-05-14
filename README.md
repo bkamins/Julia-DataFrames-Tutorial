@@ -118,7 +118,7 @@ Changelog:
 | 2019-08-30 | Add examples of JLSO.jl and ZipFile.jl by [xiaodaigh](https://github.com/xiaodaigh) |
 | 2019-11-03 | Add examples of JDF.jl by [xiaodaigh](https://github.com/xiaodaigh) |
 | 2019-12-08 | Updated to DataFrames 0.20.0 |
-| 2019-05-06 | Updated to DataFrames 0.21.0 (except load/save and extras) |
+| 2020-05-06 | Updated to DataFrames 0.21.0 (except load/save and extras) |
 
 # Core functions summary
 
