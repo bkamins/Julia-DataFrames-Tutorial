@@ -82,9 +82,9 @@ version = "1.0.6+5"
 
 [[CSV]]
 deps = ["Dates", "Mmap", "Parsers", "PooledArrays", "SentinelArrays", "Tables", "Unicode"]
-git-tree-sha1 = "5f3ed063da881e9f309b0a8d543d8d1e4f5710fb"
+git-tree-sha1 = "290a56b2448024a1501834ee8b7d5d7004bc5ad3"
 uuid = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
-version = "0.8.0"
+version = "0.8.2"
 
 [[Cairo_jll]]
 deps = ["Artifacts", "Bzip2_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
@@ -181,9 +181,15 @@ version = "1.4.0"
 
 [[DataFrames]]
 deps = ["CategoricalArrays", "Compat", "DataAPI", "Future", "InvertedIndices", "IteratorInterfaceExtensions", "LinearAlgebra", "Markdown", "Missings", "PooledArrays", "PrettyTables", "Printf", "REPL", "Reexport", "SortingAlgorithms", "Statistics", "TableTraits", "Tables", "Unicode"]
-git-tree-sha1 = "3bd2f94213ea7c5cc44c84f25f364a08207d9d71"
+git-tree-sha1 = "20159837c2e5e196793a313cd700b8199fd8f985"
 uuid = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
-version = "0.22.0"
+version = "0.22.1"
+
+[[DataFramesMeta]]
+deps = ["DataFrames", "Reexport"]
+git-tree-sha1 = "d2b8f08f3b84ba53321d5609a622ad9f61998a6a"
+uuid = "1313f7d8-7da2-5740-9ea0-a2ca25f37964"
+version = "0.6.0"
 
 [[DataStructures]]
 deps = ["Compat", "InteractiveUtils", "OrderedCollections"]
@@ -222,9 +228,9 @@ uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[Distributions]]
 deps = ["FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "StaticArrays", "Statistics", "StatsBase", "StatsFuns"]
-git-tree-sha1 = "4474f7b2d475fbdb028faab4fdbd88d8d7a50e62"
+git-tree-sha1 = "6493eec6bfb1e578cff879b66844807e3625c83c"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.24.3"
+version = "0.24.4"
 
 [[DocStringExtensions]]
 deps = ["LibGit2", "Markdown", "Pkg", "Test"]
@@ -456,9 +462,9 @@ version = "0.21.1"
 
 [[JSON3]]
 deps = ["Dates", "Mmap", "Parsers", "StructTypes", "UUIDs"]
-git-tree-sha1 = "9414acd0788bf246c2b948c169bf0ab53ebdeab9"
+git-tree-sha1 = "961ef1c3e5c8a595d5bec270a9007429ef12ed10"
 uuid = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
-version = "1.5.0"
+version = "1.5.1"
 
 [[JSONTables]]
 deps = ["JSON3", "StructTypes", "Tables"]
@@ -772,10 +778,10 @@ uuid = "784f63db-0788-585a-bace-daefebcd302b"
 version = "2019.1.0+2"
 
 [[Qt_jll]]
-deps = ["Fontconfig_jll", "Glib_jll", "Libdl", "Pkg", "Xorg_libXext_jll", "Xorg_libxcb_jll", "Xorg_xcb_util_image_jll", "Xorg_xcb_util_keysyms_jll", "Xorg_xcb_util_renderutil_jll", "Xorg_xcb_util_wm_jll", "Zlib_jll", "xkbcommon_jll"]
-git-tree-sha1 = "b3979580c712b167a131bd1a4152a840d6df89cb"
+deps = ["Artifacts", "Fontconfig_jll", "Glib_jll", "JLLWrappers", "Libdl", "Pkg", "Xorg_libXext_jll", "Xorg_libxcb_jll", "Xorg_xcb_util_image_jll", "Xorg_xcb_util_keysyms_jll", "Xorg_xcb_util_renderutil_jll", "Xorg_xcb_util_wm_jll", "Zlib_jll", "xkbcommon_jll"]
+git-tree-sha1 = "72244a8e084251aea25968c61bbf5c001aaa7d5a"
 uuid = "ede63266-ebff-546c-83e0-1c6fb6d0efc8"
-version = "5.15.0+3"
+version = "5.15.1+0"
 
 [[QuadGK]]
 deps = ["DataStructures", "LinearAlgebra"]
@@ -880,9 +886,9 @@ uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
 [[SpecialFunctions]]
 deps = ["OpenSpecFun_jll"]
-git-tree-sha1 = "d8d8b8a9f4119829410ecd706da4cc8594a1e020"
+git-tree-sha1 = "bf68b90f72f81dd1519b289b7403c591cfdd6a88"
 uuid = "276daf66-3868-5448-9aa4-cd146d93841b"
-version = "0.10.3"
+version = "1.0.0"
 
 [[StaticArrays]]
 deps = ["LinearAlgebra", "Random", "Statistics"]
@@ -958,9 +964,9 @@ uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [[TimeZones]]
 deps = ["Dates", "EzXML", "Mocking", "Pkg", "Printf", "RecipesBase", "Serialization", "Unicode"]
-git-tree-sha1 = "69f312cdb1b3145761d4e5866034efde4608735d"
+git-tree-sha1 = "e8a5ab7e56d23bf147585001d33d969c655d4091"
 uuid = "f269a46b-ccf7-5d73-abea-4c690281aa53"
-version = "1.5.1"
+version = "1.5.2"
 
 [[TranscodingStreams]]
 deps = ["Random", "Test"]
