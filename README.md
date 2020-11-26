@@ -2,7 +2,7 @@
 
 [Bogumił Kamiński](http://bogumilkaminski.pl/about/), November 2020, 2020
 
-**The tutorial is for DataFrames 0.22.0**
+**The tutorial is for DataFrames 0.22.1**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -20,10 +20,11 @@ Tested under Julia 1.5.3. The project dependencies are the following:
 ```
   [69666777] Arrow v1.0.1
   [6e4b80f9] BenchmarkTools v0.5.0
-  [336ed68f] CSV v0.8.0
+  [336ed68f] CSV v0.8.2
   [324d7699] CategoricalArrays v0.9.0
   [944b1d66] CodecZlib v0.7.0
-  [a93c6f00] DataFrames v0.22.0
+  [a93c6f00] DataFrames v0.22.1
+  [1313f7d8] DataFramesMeta v0.6.0
   [5789e2e9] FileIO v1.4.4
   [da1fdf0e] FreqTables v0.4.2
   [7073ff75] IJulia v1.23.0
@@ -125,7 +126,8 @@ Changelog:
 | 2019-11-03 | Add examples of JDF.jl by [xiaodaigh](https://github.com/xiaodaigh) |
 | 2019-12-08 | Updated to DataFrames 0.20.0 |
 | 2020-05-06 | Updated to DataFrames 0.21.0 (except load/save and extras) |
-| 2020-05-06 | Updated to DataFrames 0.22.0 (except DataFramesMeta.jl which does not work yet) |
+| 2020-11-20 | Updated to DataFrames 0.22.0 (except DataFramesMeta.jl which does not work yet) |
+| 2020-11-26 | Updated to DataFramesMeta.jl 0.6; update by @pdeffebach |
 
 # Core functions summary
 
@@ -141,5 +143,5 @@ Changelog:
 10. Transforming: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@pipe` (from `Pipe` package)
 11. Extras:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`, `Name`
-    * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): does not work with DataFrames.jl 0.22 release yet
+    * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`, `@by`, `@combine`, `@eachrow`, `@newcol`, `^`, `cols`
     * [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl): `@df`, `plot`, `density`, `histogram`,`boxplot`, `violin`
