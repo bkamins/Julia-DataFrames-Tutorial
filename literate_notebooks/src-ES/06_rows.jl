@@ -1,121 +1,122 @@
-# # Introduction to DataFrames
+# # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018**
+# (Traducción por Miguel Raz, Abril 18, 2021)
 
-using DataFrames # load package
+using DataFrames # cargar paquete
 srand(1);
 
-# ## Manipulating rows of DataFrame
+# ## Manipulando filas de DataFrames
 
 #-
 
-# ### Reordering rows
+# ### Reordenando filas
 
-x = DataFrame(id=1:10, x = rand(10), y = [zeros(5); ones(5)]) # and we hope that x[:x] is not sorted :)
-
-#-
-
-issorted(x), issorted(x, :x) # check if a DataFrame or a subset of its columns is sorted
+x = DataFrame(id=1:10, x = rand(10), y = [zeros(5); ones(5)]) # y esperamos que x[:x] no esté ordenado
 
 #-
 
-sort!(x, :x) # sort x in place
+issorted(x), issorted(x, :x) # checamos si el DataFrame o un subconjunto de sus columnas están ordenadas.
 
 #-
 
-y = sort(x, :id) # new DataFrame
+sort!(x, :x) # ordenar in situ
 
 #-
 
-sort(x, (:y, :x), rev=(true, false)) # sort by two columns, first is decreasing, second is increasing
+y = sort(x, :id) # nuevo DataFrame
 
 #-
 
-sort(x, (order(:y, rev=true), :x)) # the same as above
+sort(x, (:y, :x), rev=(true, false)) # ordenaro por dos columnas, la primera en orden descendiente y la segunda en ascendiente
 
 #-
 
-sort(x, (order(:y, rev=true), order(:x, by=v->-v))) # some more fancy sorting stuff
+sort(x, (order(:y, rev=true), :x)) # igual que arriba
 
 #-
 
-x[shuffle(1:10), :] # reorder rows (here randomly)
+sort(x, (order(:y, rev=true), order(:x, by=v->-v))) # más cosas muy sofisticadas para ordenar
+
+#-
+
+x[shuffle(1:10), :] # reorganizar filas (aquí aleatoriamente)
 
 #-
 
 sort!(x, :id)
-x[[1,10],:] = x[[10,1],:] # swap rows
+x[[1,10],:] = x[[10,1],:] # intercambiar filas
 x
 
 #-
 
-x[1,:], x[10,:] = x[10,:], x[1,:] # and swap again
+x[1,:], x[10,:] = x[10,:], x[1,:] # y otra vez
 x
 
-# ### Merging/adding rows
+# ### Unir/añadir filasMerging/adding rows
 
 x = DataFrame(rand(3, 5))
 
 #-
 
-[x; x] # merge by rows - data frames must have the same column names; the same is vcat
+[x; x] # unir por filas - los DataFrames deben tener los mismos nombres de columnas. Esto equivale a usar `vcat`.
 
 #-
 
-y = x[reverse(names(x))] # get y with other order of names
+y = x[reverse(names(x))] # asignar `y` con otro orden para los nombres
 
 #-
 
-vcat(x, y) # we get what we want as vcat does column name matching
+vcat(x, y) # Equivalente, pues `vcat` matchea las columnas con nombres iguales
 
 #-
 
-vcat(x, y[1:3]) # but column names must still match
+vcat(x, y[1:3]) # pero los nombres de las columnas deben ser iguales
 
 #-
 
-append!(x, x) # the same but modifies x
+append!(x, x) # lo mismo pero modificando x
 
 #-
 
-append!(x, y) # here column names must match exactly
+append!(x, y) # aquí los nombres de las columnas deben ser match exactos
 
 #-
 
-push!(x, 1:5) # add one row to x at the end; must give correct number of values and correct types
+push!(x, 1:5) # agrega 1 fila a `x` al final; debe dar los valores y tipos correctos
 x
 
 #-
 
-push!(x, Dict(:x1=> 11, :x2=> 12, :x3=> 13, :x4=> 14, :x5=> 15)) # also works with dictionaries
+push!(x, Dict(:x1=> 11, :x2=> 12, :x3=> 13, :x4=> 14, :x5=> 15)) # sirve igual con diccionarios
 x
 
-# ### Subsetting/removing rows
+# ### Quitar/Subponer filas
 
 x = DataFrame(id=1:10, val='a':'j')
 
 #-
 
-x[1:2, :] # by index
+x[1:2, :] # por su índice
 
 #-
 
-view(x, 1:2) # the same but a view
+view(x, 1:2) # igual pero con un `view`
 
 #-
 
-x[repmat([true, false], 5), :] # by Bool, exact length required
+x[repmat([true, false], 5), :] # por `Bool`, requiere longitud exacta
 
 #-
 
-view(x, repmat([true, false], 5), :) # view again
+view(x, repmat([true, false], 5), :) # `view` otra vez
 
 #-
 
-deleterows!(x, 7) # delete one row
+deleterows!(x, 7) # borrar 1 fila
 
 #-
 
-deleterows!(x, 6:7) # delete a collection of rows
+deleterows!(x, 6:7) # borrar una colleción de filas
 
 #-
 
@@ -123,11 +124,11 @@ x = DataFrame([1:4, 2:5, 3:6])
 
 #-
 
-filter(r -> r[:x1] > 2.5, x) # create a new DataFrame where filtering function operates on DataFrameRow
+filter(r -> r[:x1] > 2.5, x) # crear un nuevo DataFrame donde la función de filtrado opera sobre un `DataFrameRow`
 
 #-
 
-## in place modification of x, an example with do-block syntax
+## Modificar `x` in situ, con sintaxis de `do-block`
 filter!(x) do r
     if r[:x1] > 2.5
         return r[:x2] < 4.5
@@ -135,7 +136,7 @@ filter!(x) do r
     r[:x3] < 3.5
 end
 
-# ### Deduplicating
+# ### Desduplicación
 
 x = DataFrame(A=[1,2], B=["x","y"])
 append!(x, x)
@@ -144,34 +145,34 @@ x
 
 #-
 
-unique(x, [1,2]) # get first unique rows for given index
+unique(x, [1,2]) # Sacar la primera fila única dado un índice
 
 #-
 
-unique(x) # now we look at whole rows
+unique(x) # Ahora vemos las filas
 
 #-
 
-nonunique(x, :A) # get indicators of non-unique rows
+nonunique(x, :A) # Sacar indicadores de filas no únicas
 
 #-
 
-unique!(x, :B) # modify x in place
+unique!(x, :B) # modificar x in situ
 
-# ### Extracting one row from `DataFrame` into a vector
+# ### Extraer una fila de `DataFrame` a un vector
 
 x = DataFrame(x=[1,missing,2], y=["a", "b", missing], z=[true,false,true])
 
 #-
 
 cols = [:x, :y]
-[x[1, col] for col in cols] # subset of columns
+[x[1, col] for col in cols] # subconjunto de columnas
 
 #-
 
-[[x[i, col] for col in names(x)] for i in 1:nrow(x)] # vector of vectors, each entry contains one full row of x
+[[x[i, col] for col in names(x)] for i in 1:nrow(x)] # vector de vectores, cada entrada contiene una sola fila de `x`
 
 #-
 
-Tuple(x[1, col] for col in cols) # similar construct for Tuples, when ported to Julia 0.7 NamedTuples will be added
+Tuple(x[1, col] for col in cols) # construcción similar para tuplas (`Tuples`), y tuplas nombradas (`NamedTuples`) post Julia 0.7.
 
