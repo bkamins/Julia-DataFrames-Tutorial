@@ -1,75 +1,78 @@
 # # Introduction to DataFrames
+# # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 23, 2018**
+# Traducción por Miguel Raz, Abril 17, 2021
 
-using DataFrames # load package
+using DataFrames # cargar el paquete
 
-# ## Getting basic information about a data frame
+# ## Obteniendo información básica de un DataFrame
+#
 # 
-# Let's start by creating a `DataFrame` object, `x`, so that we can learn how to get information on that data frame.
+# Empecemos creando un objeto `DataFrame`, llamado `x`, para que podamos aprender como sacarle información.
 
 x = DataFrame(A = [1, 2], B = [1.0, missing], C = ["a", "b"])
 
-# The standard `size` function works to get dimensions of the `DataFrame`,
+# La función estándar `size` nos dice las dimensiones del `DataFrame`,
 
 size(x), size(x, 1), size(x, 2)
 
-# as well as `nrow` and `ncol` from R; `length` gives number of columns.
+# y al igual que `nrow	 y `ncol` de R; `length`; nos da el número de columnas.
 
 nrow(x), ncol(x), length(x)
 
-# `describe` gives basic summary statistics of data in your `DataFrame`.
+# `describe` nos da estadísticas descriptivas básicas de nuestro `DataFrame`. 
 
 describe(x)
 
-# Use `showcols` to get informaton about columns stored in a DataFrame.
+# Usa `showcols` para obetner información sobre columnas guardadas en un DataFrame.
 
 showcols(x)
 
-# `names` will return the names of all columns,
+# `names` regresa el nombre de todas las columnas,
 
 names(x)
 
-# and `eltypes` returns their types.
+# y `eltypes` el de sus tipos.
 
 eltypes(x)
 
-# Here we create some large DataFrame
+# Aquí creamos un DataFrame más grande
 
 y = DataFrame(rand(1:10, 1000, 10));
 
-# and then we can use `head` to peek into its top rows
+# y usamos `head` para asomarnos a sus primeras filas
 
 head(y)
 
-# and `tail` to see its bottom rows.
+# y `tail` para sus últimas filas.
 
 tail(y, 3)
 
-# ### Most elementary get and set operations
+# ### Operaciones elementales para asignar y sacar
 # 
-# Given the `DataFrame`, `x`, here are three ways to grab one of its columns as a `Vector`:
+# Dado un objeto DataFrame llamado `x`, aquí hay 3 maneras de tomar una de sus columnas como un `Vector`:
 
 x[1], x[:A], x[:, 1]
 
-# To grab one row as a DataFrame, we can index as follows.
+# Para tomar una hilera de un DataFrame, lo indexamos como sigue
 
 x[1, :]
 
-# We can grab a single cell or element with the same syntax to grab an element of an array.
+# Podemos agarrar una sola celda o elemento con la misma sintaxis que usamos para elementos de arreglos.
 
 x[1, 1]
 
-# Assignment can be done in ranges to a scalar,
+# Asignar también se puede hacer con rangos a un escalar,
 
 x[1:2, 1:2] = 1
 x
 
-# to a vector of length equal to the number of assigned rows,
+# a un vector de longitud igual al número de filas asignadas,
 
 x[1:2, 1:2] = [1,2]
 x
 
-# or to another data frame of matching size.
+# o a otro DataFrame de tamaño igual.
 
 x[1:2, 1:2] = DataFrame([5 6; 7 8])
 x
