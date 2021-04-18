@@ -1,187 +1,188 @@
-# # Introduction to DataFrames
+# # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 23, 2018**
+# (Traducción por Miguel Raz Guzmán Macedo, Abril 17, 2021)
 
-using DataFrames # load package
+using DataFrames 
 
-# ## Manipulating columns of DataFrame
+# ## Manipulando columnas de DataFrames
 
 #-
 
-# ### Renaming columns
+# ### Renombrando columnas
 # 
-# Let's start with a `DataFrame` of `Bool`s that has default column names.
+# Empecemos con un `DataFrame` de `Bool`s y nombres de columnas por default.
 
 x = DataFrame(Bool, 3, 4)
 
-# With `rename`, we create new `DataFrame`; here we rename the column `:x1` to `:A`. (`rename` also accepts collections of Pairs.)
+# Con `rename`, creamos un nuevo `DataFrame`; aquí renombramos la columna `:x1` a `:A`. (`rename` sólo acepta colleciones de Pairs.)
 
 rename(x, :x1 => :A)
 
-# With `rename!` we do an in place transformation. 
+# Con `rename!` hacemos una transformación in situ.
 # 
-# This time we've applied a function to every column name.
+# Esta vez hemos aplicado una función a cada nombre de columna.
 
 rename!(c -> Symbol(string(c)^2), x)
 
-# We can also change the name of a particular column without knowing the original.
+# Podemos tambíen cambiar el nombre particular de una columna sin conocer el nombre original.
 # 
-# Here we change the name of the third column, creating a new `DataFrame`.
+# Aquí cambiamos el nombre de la tercera columna, creando un nuevo `DataFrame`.
 
 rename(x, names(x)[3] => :third)
 
-# With `names!`, we can change the names of all variables.
+# Con `names!`., podemos cambiar el nombre de todas las variables.
 
 names!(x, [:a, :b, :c, :d])
 
-# We get an error when we try to provide duplicate names
+# Obtenemos un error si proveemos nombres duplicados
 
 names!(x, fill(:a, 4))
 
-#  unless we pass `makeunique=true`, which allows us to handle duplicates in passed names.
+#  A no ser que pasemos el argumento `makeunique=true`, lo cual nos permite pasar nombres duplicados.
 
 names!(x, fill(:a, 4), makeunique=true)
 
-# ### Reordering columns
+# ### Reorganizar columnas
 
 #-
 
-# We can reorder the names(x) vector as needed, creating a new DataFrame.
+# Podemos reorganizar el vector `names(x)` como sea necesario, creando un nuevo DataFrame en el proceso.
 
 srand(1234)
 x[shuffle(names(x))]
 
-# also `permutecols!` will be introduced in next release of DataFrames
+# `permutecols!` estará disponible en la siguiente versión de DataFrames.
 
 #-
 
-# ### Merging/adding columns
+# ### Juntando/dividiendo columnas
 
 x = DataFrame([(i,j) for i in 1:3, j in 1:4])
 
-# With `hcat` we can merge two `DataFrame`s. Also [x y] syntax is supported but only when DataFrames have unique column names.
+# Con `hcat` (*con*catenación *h*orizontal), podemos juntar 2 `DataFrame`s. `[x y]` también es sintaxis válida pero sólo cuando los DataFrames tienen nombres de columnas únicos.
 
 hcat(x, x, makeunique=true)
 
-# We can also use `hcat` to add a new column; a default name `:x1` will be used for this column, so `makeunique=true` is needed.
+# Podemos igual usar `hcat` para agregar una nueva columna - por default se usará el nombre `:x1` para esta columna, entonces se requiere el uso de `makeunique=true`.
 
 y = hcat(x, [1,2,3], makeunique=true)
 
-# You can also prepend a vector with `hcat`.
+# También puedes anteponer un vector con `hcat`.
 
 hcat([1,2,3], x, makeunique=true)
 
-# Alternatively you could append a vector with the following syntax. This is a bit more verbose but cleaner.
+# Alternativamente se puede anexar un vector con la siguiente sintaxis. Es menos terso pero es más limpio.
 
 y = [x DataFrame(A=[1,2,3])]
 
-# Here we do the same but add column `:A` to the front.
+# Hacemos lo mismo pero agregamos la columna `:A` al frente.
 
 y = [DataFrame(A=[1,2,3]) x]
 
-# A column can also be added in the middle. Here a brute-force method is used and a new DataFrame is created.
+# Una columna también se puede agregar en medio. Aquí se usa un método de fuerza bruta y se crea un nuevo DataFrame.
 
 using BenchmarkTools
 @btime [$x[1:2] DataFrame(A=[1,2,3]) $x[3:4]]
 
-# We could also do this with a specialized in place method `insert!`. Let's add `:newcol` to the `DataFrame` `y`.
+# También podemos sar un método especializado in situ de `insert!`. Agreguemos `:newcol` al `DataFrame` `y`.
 
 insert!(y, 2, [1,2,3], :newcol)
 
-# If you want to insert the same column name several times `makeunique=true` is needed as usual.
+# Si quieres insertar la misma columna varias veces, se requiere `makeunique=true` como de costumbre.
 
 insert!(y, 2, [1,2,3], :newcol, makeunique=true)
 
-# We can see how much faster it is to insert a column with `insert!` than with `hcat` using `@btime`.
+# Podemos ver que tanto más rápido es insertar una columna con `insert!` que con `hcat` si usamos `@btime`.
 
 @btime insert!(copy($x), 3, [1,2,3], :A)
 
-# Let's use `insert!` to append a column in place,
+# Usemos `insert!` para anteponer una columna in situ,
 
 insert!(x, ncol(x)+1, [1,2,3], :A)
 
-# and to in place prepend a column.
+# y para anexar una columna in situ igual.
 
 insert!(x, 1, [1,2,3], :B)
 
-# With `merge!`, let's merge the second DataFrame into first, but overwriting duplicates.
+# Con `merge!`, juntemos el segundo DataFrame al primero, pero sobreescribiendo duplicados.
 
 df1 = DataFrame(x=1:3, y=4:6)
 df2 = DataFrame(x='a':'c', z = 'd':'f', new=11:13)
 df1, df2, merge!(df1, df2)
 
-#  For comparison: merge two `DataFrames`s but renaming duplicate names via `hcat`.
+#  Para comparar: une 2 `DataFrame`s pero renombrando los duplicados via `hcat`.
 
 df1 = DataFrame(x=1:3, y=4:6)
 df2 = DataFrame(x='a':'c', z = 'd':'f', new=11:13)
 hcat(df1, df2, makeunique=true)
 
-# ### Subsetting/removing columns
+# ### Quitando / subponiendo columnas
 # 
-# Let's create a new `DataFrame` `x` and show a few ways to create DataFrames with a subset of `x`'s columns.
+# Creemos un nuevo `DataFrame` `x` y mostremos algunas maneras de crear DataFrames con un subconjunto de columnas de `x`.
 
 x = DataFrame([(i,j) for i in 1:3, j in 1:5])
 
-# First we could do this by index
+# Primero, podemos hacer esto usando el índice
 
 x[[1,2,4,5]]
 
-# or by column name.
+# ó el nombre de la columna.
 
 x[[:x1, :x4]]
 
-# We can also choose to keep or exclude columns by `Bool`. (We need a vector whose length is the number of columns in the original `DataFrame`.)
+# Podemos escoger quedar o deshechar columnas excluidas por `Bool`. (Necesitamos un vector cuya longitud es el número de columnas orignales de `DataFrame`.)
 
 x[[true, false, true, false, true]]
 
-# Here we create a single column `DataFrame`,
+# Aquí creamos una sola columna de un `DataFrame`,
 
 x[[:x1]]
 
-# and here we access the vector contained in column `:x1`.
+# Y aquí accesamos el vector contenido en la columna `:x1`.
 
 x[:x1]
 
-# We could grab the same vector by column number
+# Podemos agarrar el mismo vector por el número de la columna
 
 x[1]
 
-# and remove everything from a `DataFrame` with `empty!`.
+# y borrar todo dentro del `DataFrame` con `empty!`.
 
 empty!(y)
 
-# Here we create a copy of `x` and delete the 3rd column from the copy with `delete!`.
+# Ahora creamos una copia de `x` y borramos la 3ra columna de la copia con `delete!`.
 
 z = copy(x)
 x, delete!(z, 3)
 
-# ### Modify column by name
+# ### Modificar columnas por nombre
 
 x = DataFrame([(i,j) for i in 1:3, j in 1:5])
 
-# With the following syntax, the existing column is modified without performing any copying.
+# Con la siguiente sintaxis, la columna preexistente se modifica sin copias.
 
 x[:x1] = x[:x2]
 x
 
-# We can also use the following syntax to add a new column at the end of a `DataFrame`.
+# Podemos usar la siguiente sintaxis para agregar una nueva columna al final del `DataFrame`.
 
 x[:A] = [1,2,3]
 x
 
-# A new column name will be added to our `DataFrame` with the following syntax as well (7 is equal to `ncol(x)+1`).
+# Una nueva columna se agregará a nuestro `DataFrame` con la siguiente sintaxis también (`7 == ncol(x) + 1`).
 
 x[7] = 11:13
 x
 
-# ### Find column name
+# ### Encontrar el nombre de columnas
 
 x = DataFrame([(i,j) for i in 1:3, j in 1:5])
 
-# We can check if a column with a given name exists via
+# Podemos revisar si una columna con un nombre dado existe via
 
 :x1 in names(x) 
 
-# and determine its index via
+# y determinar su índice via
 
 findfirst(names(x), :x2)
 
