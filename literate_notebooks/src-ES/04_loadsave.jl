@@ -1,64 +1,66 @@
-# # Introduction to DataFrames
+# # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 23, 2018**
+# (Traducción de Miguel Raz Guzmán Macedo)
 
-using DataFrames # load package
+using DataFrames # cargar paquete
 
-# ## Load and save DataFrames
-# We do not cover all features of the packages. Please refer to their documentation to learn them.
+# ## Cargar y guardar DataFrames
+# No cubriremos toda la funcionalidad de los paquetes. Por favor leer la documentación para saber más.
 # 
-# Here we'll load `CSV` to read and write CSV files and `JLD`, which allows us to work with a Julia native binary format.
+# Aquí cargaremos un `CSV` para leer y escribir archivos CSV. `JLD` nos permite trabajar con un formato binario nativo de Julia.
 
 using CSV
 using JLD
 
-# Let's create a simple `DataFrame` for testing purposes,
+# Creemos un `DataFrame` para ver casos sencillos,
 
 x = DataFrame(A=[true, false, true], B=[1, 2, missing],
               C=[missing, "b", "c"], D=['a', missing, 'c'])
 
 
-# and use `eltypes` to look at the columnwise types.
+# y usaremos `eltypes` para ver los tipos columnares.
 
 eltypes(x)
 
-# Let's use `CSV` to save `x` to disk; make sure `x.csv` does not conflict with some file in your working directory.
+# usemos `CSV` para guardar `x` a disco; Asegurarse que `x.csv` no genera conflictos con archivos en su directorio actual.
 
 CSV.write("x.csv", x)
 
 # Now we can see how it was saved by reading `x.csv`.
+# Ahora vemos como se puede guardó al leer `x.csv`.
 
 print(read("x.csv", String))
 
-# We can also load it back. `use_mmap=false` disables memory mapping so that on Windows the file can be deleted in the same session.
+# También lo podemos cargar de regreso. `use_mmap=false` desabilita el uso de `memory mapping` para los archivos se puedan borrar en la misma sesión en Windows.
 
 y = CSV.read("x.csv", use_mmap=false)
 
-# When loading in a `DataFrame` from a `CSV`, all columns allow `Missing` by default. Note that the column types have changed!
+# Cuando cargas un `DataFrame` de un `CSV`, todas las columnas permiten `Missing` por default. ¡Nota que el tipo de las columnas cambió!
 
 eltypes(y)
 
-# Now let's save `x` to a file in a binary format; make sure that `x.jld` does not exist in your working directory.
+# Ahora guardemos `x` a un archivo en formato binario. Asegúrese que `x.jld` no existe en su directorio actual.
 
 save("x.jld", "x", x)
 
-# After loading in `x.jld` as `y`, `y` is identical to `x`.
+# Después de cargar `x.jld` como `y`, `y` es idéntico a `x`.
 
 y = load("x.jld", "x")
 
-# Note that the column types of `y` are the same as those of `x`!
+# Observación: ¡los tipos de columnas de `y` son del mismo tipo que `x`!
 
 eltypes(y)
 
-# Next, we'll create the files `bigdf.csv` and `bigdf.jld`, so be careful that you don't already have these files on disc!
+# Ahora, crearemos los archivos `bigdf.csv` y `bigdf.jld`, entonces, ¡cuidado con que no existan esos archivos actualmente en su disco!
 # 
-# In particular, we'll time how long it takes us to write a `DataFrame` with 10^3 rows and 10^5 columns to `.csv` and `.jld` files.  *You can expect JLD to be faster!* Use `compress=true` to reduce file sizes.
+# En particular, mediremos el tiempo que toma escribir un `DataFrame` con 10^3 filas y 10^5 columnas a archivos `.csv` y `.jld`. *Puedes esperar que JLD sea más rápido*. Usa `compress=true` para reducir el tamaño de los archivos.
 
 bigdf = DataFrame(Bool, 10^3, 10^2)
 @time CSV.write("bigdf.csv", bigdf)
 @time save("bigdf.jld", "bigdf", bigdf)
 getfield.(stat.(["bigdf.csv", "bigdf.jld"]), :size)
 
-# Finally, let's clean up. Do not run the next cell unless you are sure that it will not erase your important files.
+# Finalmente, hay que hacer algo de limpieza. No corras la siguiente línea a menos que estés segura que no va a borrar archivos importantes.
 
-foreach(rm, ["x.csv", "x.jld", "bigdf.csv", "bigdf.jld"])
+#foreach(rm, ["x.csv", "x.jld", "bigdf.csv", "bigdf.jld"])
 
