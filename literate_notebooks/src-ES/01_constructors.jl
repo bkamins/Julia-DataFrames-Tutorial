@@ -22,7 +22,7 @@ DataFrame() #  DataFrame vacío
 
 DataFrame(A=1:3, B=rand(3), C=randstring.([3,3,3]))
 
-# Podemos creat el `DataFrame` de un diccionario, en cuyo caso las llaves del diccionario estarán ordenadas para crear las columnas del `DataFrame`.
+# Podemos crear el `DataFrame` de un diccionario, en cuyo caso las llaves del diccionario estarán ordenadas para crear las columnas del `DataFrame`.
 
 x = Dict("A" => [1,2], "B" => [true, false], "C" => ['a', 'b'])
 DataFrame(x)
