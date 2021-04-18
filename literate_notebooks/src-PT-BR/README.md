@@ -1,21 +1,20 @@
-# An Introduction to DataFrames
+# Uma introdução de DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), November 2020, 2020
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Novembro 2020. Tradução de [Jose Storopoli](https://storopoli.io).
 
-**The tutorial is for DataFrames 0.22.1**
+**Esse tutorial é para DataFrames 0.22.1**
 
-A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
+Uma breve introdução sobre o uso básico de [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
-The tutorial contains a specification of the project environment version under
-which it should be run. In order to prepare this environment, before using the
-tutorial notebooks, while in the project folder run the following command in the
-command line:
+Esse tutorial contém uma especificação do ambiente do projeto no qual
+deve ser executado. Para preparar esse ambiente, antes de usar os *notebooks* do tutorial,
+execute o seguinte comando no diretório raiz do projeto:
 
 ```
 julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
-Tested under Julia 1.5.3. The project dependencies are the following:
+Testado em Julia 1.6.0. As dependências do projeto são:
 
 ```
   [69666777] Arrow v1.0.1
@@ -41,52 +40,53 @@ Tested under Julia 1.5.3. The project dependencies are the following:
   [10745b16] Statistics
 ```
 
-I will try to keep the material up to date as the packages evolve.
+Tentarei manter o material atualizado conforme os pacotes evoluem com novas versões.
 
-This tutorial covers
+Este tutorial cobre
 [DataFrames](https://github.com/JuliaData/DataFrames.jl)
-and [CategoricalArrays](https://github.com/JuliaData/CategoricalArrays.jl),
-as they constitute the core of [DataFrames](https://github.com/JuliaData/DataFrames.jl)
-along with selected file reading and writing packages.
+e [CategoricalArrays](https://github.com/JuliaData/CategoricalArrays.jl),
+pois constituem o núcleo de [DataFrames](https://github.com/JuliaData/DataFrames.jl)
+junto com pacotes selecionados de leitura e gravação de arquivos.
 
-In the last [extras](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/13_extras.ipynb)
-part mentions *selected* functionalities of *selected* useful packages that I find useful for data manipulation, currently those are:
+No conteúdo [extras](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/13_extras.ipynb)
+se menciona *funcionalidades* selecionadas de pacotes *selecionados* que considero úteis para manipulação de dados, atualmente são:
 [FreqTables](https://github.com/nalimilan/FreqTables.jl),
-[DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) (pending its update to support DataFrames.jl 0.22 release),
-[StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl).
+[DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) (aguardando uma atualização para oferecer suporte à versão DataFrames.jl 0.22),
+e [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl).
 
-# Setting up Jupyter Notebook for work with DataFrames.jl
+# Configurando Jupyter Notebook para trabalhar com DataFrames.jl
 
-By default Jupyter Notebook will limit the number of rows and columns when
-displaying a data frame to roughly fit the screen size (like in the REPL).
+Por padrão, o Jupyter Notebook limitará o número de linhas e colunas quando
+exibindo um *data frame* para caber aproximadamente no tamanho da tela (similar ao REPL).
 
-You can override this behavior by setting `ENV["COLUMNS"]` or `ENV["LINES"]`
-variables to hold the maximum width and height of output in characters
-respectively when running a notebook. Alternatively you can add the following
-entry `"COLUMNS": "1000", "LINES": "100"` to `"env"` variable in your Jupyter
-kernel file. See
-[here](https://jupyter-client.readthedocs.io/en/stable/kernels.html) for
-information about location and specification of Jupyter kernels.
+Você pode substituir este comportamento definindo as variáveis `ENV["COLUMNS"]` ou
+`ENV["LINES"]` para manter a largura e altura máximas de saída em caracteres
+respectivamente ao executar um notebook. Alternativamente, você pode adicionar a seguinte
+entrada `"COLUMNS": "1000", "LINES": "100"` para variável `"env"` em seu
+arquivo de kernel Jupyter. Veja
+[aqui](https://jupyter-client.readthedocs.io/en/stable/kernels.html) para
+informações sobre como localizar e especificar kernels Jupyter.
 
-# TOC
 
-| File                                                                                                              | Topic                             |
-|-------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| [01_constructors.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/01_constructors.ipynb)   | Creating DataFrame and conversion |
-| [02_basicinfo.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/02_basicinfo.ipynb)         | Getting summary information       |
-| [03_missingvalues.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/03_missingvalues.ipynb) | Handling missing values           |
-| [04_loadsave.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/04_loadsave.ipynb)           | Loading and saving DataFrames     |
-| [05_columns.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/05_columns.ipynb)             | Working with columns of DataFrame |
-| [06_rows.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/06_rows.ipynb)                   | Working with row of DataFrame     |
-| [07_factors.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/07_factors.ipynb)             | Working with categorical data     |
-| [08_joins.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/08_joins.ipynb)                 | Joining DataFrames                |
-| [09_reshaping.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/09_reshaping.ipynb)         | Reshaping DataFrames              |
-| [10_transforms.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/10_transforms.ipynb)       | Transforming DataFrames           |
-| [11_performance.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/11_performance.ipynb)     | Performance tips                  |
-| [12_pitfalls.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/12_pitfalls.ipynb)           | Possible pitfalls                 |
-| [13_extras.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/13_extras.ipynb)               | Additional interesting packages   |
+# Índice
 
-Changelog:
+| Arquivo                                                                                                           | Tema                                         |
+|-------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| [01_constructors.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/01_constructors.ipynb)   | Criando `DataFrame` e conversões             |
+| [02_basicinfo.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/02_basicinfo.ipynb)         | Obtendo informações resumidas                |
+| [03_missingvalues.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/03_missingvalues.ipynb) | Lidando com valores faltantes `missing`      |
+| [04_loadsave.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/04_loadsave.ipynb)           | Carregando e salvando `DataFrames`           |
+| [05_columns.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/05_columns.ipynb)             | Manipulando colunas de `DataFrame`           |
+| [06_rows.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/06_rows.ipynb)                   | Manipulando linhas de `DataFrame`            |
+| [07_factors.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/07_factors.ipynb)             | Manipulando dados categóricos (qualitativos) |
+| [08_joins.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/08_joins.ipynb)                 | Juntando (*join*) `DataFrames`               |
+| [09_reshaping.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/09_reshaping.ipynb)         | Redimensionamento `DataFrames`               |
+| [10_transforms.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/10_transforms.ipynb)       | Transformando `DataFrames`                   |
+| [11_performance.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/11_performance.ipynb)     | Dicas de desempenho                          |
+| [12_pitfalls.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/12_pitfalls.ipynb)           | Possíveis armadilhas                         |
+| [13_extras.ipynb](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/13_extras.ipynb)               | Pacotes adicionais interessantes             |
+
+*Changelog*:
 
 | Date       | Changes                                                      |
 | ---------- | ------------------------------------------------------------ |
@@ -129,18 +129,18 @@ Changelog:
 | 2020-11-20 | Updated to DataFrames 0.22.0 (except DataFramesMeta.jl which does not work yet) |
 | 2020-11-26 | Updated to DataFramesMeta.jl 0.6; update by @pdeffebach |
 
-# Core functions summary
+# Sumário das funções-chave
 
-1. Constructors: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`, `eachcol`, `eachrow`, `Tables.namedtupleiterator`, `empty`, `empty!`
-2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`, `isapprox`
-3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `nonmissingtype`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
-4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Arrow.write`, `Arrow.Table` (from Arrow.jl package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.savejdf`, `JDF.loadjdf`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
-5. Working with columns: `rename`, `rename!`, `hcat`, `insertcols!`, `categorical!`, `columnindex`, `hasproperty`, `select`, `select!`, `transform`, `transform!`, `combine`, `Not`, `All`, `Between`, `ByRow`, `AsTable`
-6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `delete!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@pipe` (from `Pipe` package), `only`
-7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
-8. Joining: `innerjoin`, `leftjoin`, `rightjoin`, `outerjoin`, `semijoin`, `antijoin`, `crossjoin`
-9. Reshaping: `stack`, `unstack`
-10. Transforming: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@pipe` (from `Pipe` package)
+1. Construtores: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`, `eachcol`, `eachrow`, `Tables.namedtupleiterator`, `empty`, `empty!`
+2. Obtendo resumos: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`, `isapprox`
+3. Lidando com dados faltantes: `missing` (singleton instance of `Missing`), `ismissing`, `nonmissingtype`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
+4. Carregando e salvando: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Arrow.write`, `Arrow.Table` (from Arrow.jl package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.savejdf`, `JDF.loadjdf`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
+5. Manipulando colunas: `rename`, `rename!`, `hcat`, `insertcols!`, `categorical!`, `columnindex`, `hasproperty`, `select`, `select!`, `transform`, `transform!`, `combine`, `Not`, `All`, `Between`, `ByRow`, `AsTable`
+6. Manipulando linhas: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `delete!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@pipe` (from `Pipe` package), `only`
+7. Manipulando dados categóricos: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
+8. Juntando: `innerjoin`, `leftjoin`, `rightjoin`, `outerjoin`, `semijoin`, `antijoin`, `crossjoin`
+9. Redimensionamento: `stack`, `unstack`
+10. Transformando: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@pipe` (from `Pipe` package)
 11. Extras:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`, `Name`
     * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`, `@by`, `@combine`, `@eachrow`, `@newcol`, `^`, `cols`
