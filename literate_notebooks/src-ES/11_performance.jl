@@ -1,22 +1,26 @@
 # # Introduction to DataFrames
+# # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018**
+# (Traducción por Miguel Raz Guzmán Macedo, 18 de abril de 2021)
 
 using DataFrames
 using BenchmarkTools
 
-# ## Performance tips
+# ## Tips de Performance 🚀
 
 #-
 
-# ### Access by column number is faster than by name
+# ### Accesar columnas por número es más rápido que por nombre
 
 x = DataFrame(rand(5, 1000))
 @btime x[500];
 @btime x[:x500];
 
-# ### When working with data `DataFrame` use barrier functions or type annotation
+# ### Cuando trabajes con datos de `DataFrame`, usa funciones barrera o anotaciones de tipo
+# Sobre funciones barrera: https://docs.julialang.org/en/v1/manual/performance-tips/
+# Las anotaciones de tipo se ven así: `x::Int64 = 2`
 
-function f_bad() # this function will be slow
+function f_bad() # esta función va a ser lenta 🐢
     srand(1); x = DataFrame(rand(1000000,2))
     y, z = x[1], x[2]
     p = 0.0
@@ -30,11 +34,11 @@ end
 
 #-
 
-@code_warntype f_bad() # the reason is that Julia does not know the types of columns in `DataFrame`
+@code_warntype f_bad() # la razón es que Julia no conoce los tipos de las columnas del `DataFrame`
 
 #-
 
-## solution 1 is to use barrier function (it should be possible to use it in almost any code)
+## la primera opción es funciones barrera (debería ser posible en casi cualquier código)
 function f_inner(y,z)
    p = 0.0
    for i in 1:length(y)
@@ -43,12 +47,12 @@ function f_inner(y,z)
    p
 end
 
-function f_barrier() # extract the work to an inner function
+function f_barrier() # extraemos el trabajo a una función interior
     srand(1); x = DataFrame(rand(1000000,2))
     f_inner(x[1], x[2])
 end
 
-function f_inbuilt() # or use inbuilt function if possible
+function f_inbuilt() # o usamos una función preestablecida si es posible
     srand(1); x = DataFrame(rand(1000000,2))
     dot(x[1], x[2])
 end
@@ -58,8 +62,8 @@ end
 
 #-
 
-## solution 2 is to provide the types of extracted columns
-## it is simpler but there are cases in which you will not know these types
+## la opción 2 es proveer el tipo de las columnas extraídas - lo cual
+## es más sencillo pero hay casos donde no se va a poder saber sus tipos
 function f_typed()
     srand(1); x = DataFrame(rand(1000000,2))
     y::Vector{Float64}, z::Vector{Float64} = x[1], x[2]
@@ -72,10 +76,10 @@ end
 
 @btime f_typed();
 
-# ### Consider using delayed `DataFrame` creation technique
+# ### Considera usar la técnica de creación de `DataFrame` demorada
 
 function f1()
-    x = DataFrame(Float64, 10^4, 100) # we work with DataFrame directly
+    x = DataFrame(Float64, 10^4, 100) # Trabajamos con un DataFrame directamente
     for c in 1:ncol(x)
         d = x[c]
         for r in 1:nrow(x)
@@ -94,29 +98,29 @@ function f2()
         end
         x[c] = d
     end
-    DataFrame(x) # we delay creation of DataFrame after we have our job done
+    DataFrame(x) # y demoramos al creación del DataFrame hasta que hayamos acabado nuestro trabaj
 end
 
 @btime f1();
 @btime f2();
 
-# ### You can add rows to a `DataFrame` in place and it is fast
+# ### Puedes agregar filas a un `DataFrame` in situ rápidamente 🐇 
 
 x = DataFrame(rand(10^6, 5))
 y = DataFrame(transpose(1.0:5.0))
 z = [1.0:5.0;]
 
-@btime vcat($x, $y); # creates a new DataFrame - slow
-@btime append!($x, $y); # in place - fast
+@btime vcat($x, $y); # crear un nuevo DataFrame - lento 🐢
+@btime append!($x, $y); # in situ - rápido 🐇   
 
-x = DataFrame(rand(10^6, 5)) # reset to the same starting point
-@btime push!($x, $z); # add a single row in place - fastest
+x = DataFrame(rand(10^6, 5)) # reseteamos al mismo punto inicial
+@btime push!($x, $z); # agregar una sola fila - lo más rápido
 
-# ### Allowing `missing` as well as `categorical` slows down computations
+# ### Permitir datos `missing` y `categorical` alenta el cómputo
 
 using StatsBase
 
-function test(data) # uses countmap function to test performance
+function test(data) # usa la función countmap para medir performance
     println(eltype(data))
     x = rand(data, 10^6)
     y = categorical(x)
