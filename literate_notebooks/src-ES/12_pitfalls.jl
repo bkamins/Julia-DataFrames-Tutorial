@@ -1,43 +1,45 @@
 # # Introduction to DataFrames
+# # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018**
+# (Traducción por Miguel Raz Guzmán Macedo, 18 de Abril de 2021)
 
 using DataFrames
 
-# ## Possible pitfalls
+# ## Posibles errors comunes
 
 #-
 
-# ### Know what is copied when creating a `DataFrame`
+# ### Hay que saber qué se copia cuando se crea un `DataFrame`
 
 x = DataFrame(rand(3, 5))
 
 #-
 
 y = DataFrame(x)
-x === y # no copyinng performed
+x === y # no se hace ninguna copia
 
 #-
 
 y = copy(x)
-x === y # not the same object
+x === y # no es el mismo objeto
 
 #-
 
-all(x[i] === y[i] for i in ncol(x)) # but the columns are the same
+all(x[i] === y[i] for i in ncol(x)) # pero las columnas son las mismas
 
 #-
 
-x = 1:3; y = [1, 2, 3]; df = DataFrame(x=x,y=y) # the same when creating arrays or assigning columns, except ranges
+x = 1:3; y = [1, 2, 3]; df = DataFrame(x=x,y=y) # lo mismo sucedo cuando creamos arreglos o asignamos columnas, excepto por rangos
 
 #-
 
-y === df[:y] # the same object
+y === df[:y] # es el mismo objeto
 
 #-
 
-typeof(x), typeof(df[:x]) # range is converted to a vector
+typeof(x), typeof(df[:x]) # un rango se convierte en un vector
 
-# ### Do not modify the parent of `GroupedDataFrame`
+# ### No hay que modificar el arreglo original de `GroupedDataFrame`
 
 x = DataFrame(id=repeat([1,2], outer=3), x=1:6)
 g = groupby(x, :id)
@@ -45,29 +47,30 @@ g = groupby(x, :id)
 #-
 
 x[1:3, 1]=[2,2,2]
-g # well - it is wrong now, g is only a view
+g # pues, está mal por ahora - `g` es sólo un `view`
 
-# ### Remember that you can filter columns of a `DataFrame` using booleans
+# ### Recuerda: peudes filtrar columnas de un `DataFrame` usando booleans
 
 srand(1)
 x = DataFrame(rand(5, 5))
 
 #-
 
-x[x[:x1] .< 0.25] # well - we have filtered columns not rows by accident as you can select columns using booleans
+x[x[:x1] .< 0.25] # oops, filtramos columnas y no filas, por accidente, pues puedes seleccionar columnas usando booleanos
 
 #-
 
-x[x[:x1] .< 0.25, :] # probably this is what we wanted
+x[x[:x1] .< 0.25, :] # esto es probablemente es lo que queríamos
 
-# ### Column selection for DataFrame creates aliases unless explicitly copied
+# ### Seleccionar columnas de un DataFrame crea un alias si no se copia explícitamente
 
 x = DataFrame(a=1:3)
 x[:b] = x[1] # alias
-x[:c] = x[:, 1] # also alias
-x[:d] = x[1][:] # copy
-x[:e] = copy(x[1]) # explicit copy
+x[:c] = x[:, 1] # igual esalias
+x[:d] = x[1][:] # copia 
+x[:e] = copy(x[1]) # copia explícita
 display(x)
 x[1,1] = 100
 display(x)
+
 
