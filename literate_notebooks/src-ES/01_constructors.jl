@@ -12,7 +12,7 @@ using DataFrames
 
 # ### Constructores
 # 
-# En esta secciónn, verás distintas maneras de crear un `DataFrame` usando el constructor `DataFrame()`.
+# En esta sección, verás distintas maneras de crear un `DataFrame` usando el constructor `DataFrame()`.
 # 
 # Primero, creemos un DataFrame vacío.
 
@@ -142,4 +142,3 @@ df = DataFrame(:a=>1, :a=>2, :a_1=>3)
 # No puedes pasar `makeunique` para permitir duplicados en este caso.
 
 df = DataFrame(a=1, a=2, makeunique=true)
-
