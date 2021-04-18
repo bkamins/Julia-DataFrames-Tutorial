@@ -1,13 +1,15 @@
 # # Introduction to DataFrames
+# # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2017**
+# (Traducción por Miguel Raz Guzmán Macedo, 18 de Abril 2021)
 
-using DataFrames # load package
+using DataFrames # cargar paquete
 
-# ## Joining DataFrames
+# ## Uniendo DataFrames (Joins)
 
 #-
 
-# ### Preparing DataFrames for a join
+# ### Preparando DataFrames para un join
 
 x = DataFrame(ID=[1,2,3,4,missing], name = ["Alice", "Bob", "Conor", "Dave","Zed"])
 y = DataFrame(id=[1,2,5,6,missing], age = [21,22,23,24,99])
@@ -15,11 +17,11 @@ x,y
 
 #-
 
-rename!(x, :ID=>:id) # names of columns on which we want to join must be the same
+rename!(x, :ID=>:id) # los nombres de columnas que queremos unir deben ser iguales
 
-# ### Standard joins: inner, left, right, outer, semi, anti
+# ### Joins estándar: inner, left, right, outer, semi, anti
 
-join(x, y, on=:id) # :inner join by default, missing is joined
+join(x, y, on=:id) # :inner join por default, los missings se unen
 
 #-
 
@@ -43,16 +45,16 @@ join(x, y, on=:id, kind=:anti)
 
 # ### Cross join
 
-## cross-join does not require on argument
-## it produces a Cartesian product or arguments
-function expand_grid(;xs...) # a simple replacement for expand.grid in R
+## un cross join no requiere un argumento
+## produce un producto cartesiano de sus argumentos
+function expand_grid(;xs...) # un reemplazo sencillo para expand.grid en R
     reduce((x,y) -> join(x, DataFrame(Pair(y...)), kind=:cross),
            DataFrame(Pair(xs[1]...)), xs[2:end])
 end
 
 expand_grid(a=[1,2], b=["a","b","c"], c=[true,false])
 
-# ### Complex cases of joins
+# ### Casos complejos de joins
 
 x = DataFrame(id1=[1,1,2,2,missing,missing],
               id2=[1,11,2,21,missing,99],
@@ -64,13 +66,13 @@ x,y
 
 #-
 
-join(x, y, on=[:id1, :id2]) # joining on two columns
+join(x, y, on=[:id1, :id2]) # join de 2 columnas
 
 #-
 
-join(x, y, on=[:id1], makeunique=true) # with duplicates all combinations are produced (here :inner join)
+join(x, y, on=[:id1], makeunique=true) # cuando hay duplicados, se producen todas las combinaciones (:inner join en este caso)
 
 #-
 
-join(x, y, on=[:id1], kind=:semi) # but not by :semi join (as it would duplicate rows)
+join(x, y, on=[:id1], kind=:semi) # pero no por un :semi join (pues duplicaría filas)
 
