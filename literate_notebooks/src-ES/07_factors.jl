@@ -1,110 +1,111 @@
 # # Introduction to DataFrames
+# # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018**
+# (Traducción por Miguel Raz Guzmán, 18 de Abril de 2021)
 
-using DataFrames # load package
+using DataFrames 
 
-# ## Working with CategoricalArrays
-
-#-
-
-# ### Constructor
-
-x = categorical(["A", "B", "B", "C"]) # unordered
+# ## Trabajando con CategoricalArrays
 
 #-
 
-y = categorical(["A", "B", "B", "C"], ordered=true) # ordered, by default order is sorting order
+# ### Constructores
+
+x = categorical(["A", "B", "B", "C"]) # sin orded
 
 #-
 
-z = categorical(["A","B","B","C", missing]) # unordered with missings
+y = categorical(["A", "B", "B", "C"], ordered=true) # con orden por default
 
 #-
 
-c = cut(1:10, 5) # ordered, into equal counts, possible to rename labels and give custom breaks
+z = categorical(["A","B","B","C", missing]) # sin orden con `missing`s (valores faltantes)
 
 #-
 
-by(DataFrame(x=cut(randn(100000), 10)), :x, d -> DataFrame(n=nrow(d)), sort=true) # just to make sure it works right
+c = cut(1:10, 5) # ordenados, en contenedores iguales. Es posible renombrar etiquetas y dar `break` customizadas.
 
 #-
 
-v = categorical([1,2,2,3,3]) # contains integers not strings
+by(DataFrame(x=cut(randn(100000), 10)), :x, d -> DataFrame(n=nrow(d)), sort=true) # checar que todo funciona
 
 #-
 
-Vector{Union{String, Missing}}(z) # sometimes you need to convert back to a standard vector
+v = categorical([1,2,2,3,3]) # contiene enteros y no cadenas
 
-# ### Managing levels
+#-
+
+Vector{Union{String, Missing}}(z) # a veces hay que convertir de regreso a un vector estándar
+
+# ### Manejando niveles
 
 arr = [x,y,z,c,v]
 
 #-
 
-isordered.(arr) # chcek if categorical array is orderd
+isordered.(arr) # checar si el arreglo categórico está ordenado
 
 #-
 
-ordered!(x, true), isordered(x) # make x ordered
+ordered!(x, true), isordered(x) # ordenar x
 
 #-
 
-ordered!(x, false), isordered(x) # and unordered again
+ordered!(x, false), isordered(x) # y desordanrlo otra vez.
+#-
+
+levels.(arr) # niveles de lista
 
 #-
 
-levels.(arr) # list levels
+unique.(arr) # incluye `missing`
 
 #-
 
-unique.(arr) # missing will be included
+y[1] < y[2] # puede comparar `y` como si fuese ordenado
 
 #-
 
-y[1] < y[2] # can compare as y is ordered
+v[1] < v[2] # no comparable, `v` no tiene orden aunque contenga enteros
 
 #-
 
-v[1] < v[2] # not comparable, v is unordered although it contains integers
+levels!(y, ["C", "B", "A"]) # puedes reordenar niveles, muy útil para CategoricalArrays ordenados
 
 #-
 
-levels!(y, ["C", "B", "A"]) # you can reorder levels, mostly useful for ordered CategoricalArrays
+y[1] < y[2] # notar que el orden cambió
 
 #-
 
-y[1] < y[2] # observe that the order is changed
+levels!(z, ["A", "B"]) # debes declarar todos los niveles presentes
 
 #-
 
-levels!(z, ["A", "B"]) # you have to specify all levels that are present
-
-#-
-
-levels!(z, ["A", "B"], allow_missing=true) # unless the underlying array allows for missings and force removal of levels
+levels!(z, ["A", "B"], allow_missing=true) # a menos que el arreglo subyacente permita `missing`s y obligue a quitar niveles
 
 #-
 
 z[1] = "B"
-z # now z has only "B" entries
+z # ahora `z` sólo tiene entradas "B"
 
 #-
 
-levels(z) # but it remembers the levels it had (the reason is mostly performance)
+levels(z) # Pero recuerda los niveles que tuvo antes (esto para mejorar performance)
 
 #-
 
-droplevels!(z) # this way we can clean it up
+droplevels!(z) # Así los podemos quitar completamente
 levels(z)
 
-# ### Data manipulation
+# ### Manipulación de datos
 
 x, levels(x)
 
 #-
 
 x[2] = "0"
-x, levels(x) # new level added at the end (works only for unordered)
+x, levels(x) # agrega nuevo nivel al final (funcona solo para casos no ordenados)
 
 #-
 
@@ -112,43 +113,43 @@ v, levels(v)
 
 #-
 
-v[1] + v[2] # even though underlying data is Int, we cannot operate on it
+v[1] + v[2] # aunque los datos subyacentes son `Int`s, no podemos operar sobre ellos
 
 #-
 
-Vector{Int}(v) # you have either to retrieve the data by conversion (may be expensive)
+Vector{Int}(v) # tienes que recuperar los datos via conversión (potencialmente costoso)
 
 #-
 
-get(v[1]) + get(v[2]) # or get a single value
+get(v[1]) + get(v[2]) # o sacar un solo valor
 
 #-
 
-get.(v) # this will work for arrays witout missings
+get.(v) # esto funciona para arreglos sin `missings`
 
 #-
 
-get.(z) # but will fail on missing values
+get.(z) # pero falla si hay valores faltantes
 
 #-
 
-Vector{Union{String, Missing}}(z) # you have to do the conversion
+Vector{Union{String, Missing}}(z) # tienes que hacer la conversión
 
 #-
 
-z[1]*z[2], z.^2 # the only exception are CategoricalArrays based on String - you can operate on them normally
+z[1]*z[2], z.^2 # la única excepción son los `CategoricalArrays` basados en `String` - ahí puedes operar con normalidad
 
 #-
 
-recode([1,2,3,4,5,missing], 1=>10) # recode some values in an array; has also in place recode! equivalent
+recode([1,2,3,4,5,missing], 1=>10) # recodificar algunos valores en el arreglo; existe el equivalente `recode!` in situ
 
 #-
 
-recode([1,2,3,4,5,missing], "a", 1=>10, 2=>20) # here we provided a default value for not mapped recodings
+recode([1,2,3,4,5,missing], "a", 1=>10, 2=>20) # aquí proveemos un valor default para los mapos que no se puedieron recodificar
 
 #-
 
-recode([1,2,3,4,5,missing], 1=>10, missing=>"missing") # to recode Missing you have to do it explicitly
+recode([1,2,3,4,5,missing], 1=>10, missing=>"missing") # para recodificar a `Missing` lo tienes que hacer explícitamente
 
 #-
 
@@ -158,64 +159,65 @@ t, levels(t)
 #-
 
 recode!(t, [1,3]=>2)
-t, levels(t) # note that the levels are dropped after recode
+t, levels(t) # notar que los níveles se borran después de `recode!`
 
 #-
 
 t = categorical([1,2,3], ordered=true)
-levels(recode(t, 2=>0, 1=>-1)) # and if you introduce a new levels they are added at the end in the order of appearance
+levels(recode(t, 2=>0, 1=>-1)) # y si agregas nuevos niveles, se ponen al final en el orden que se declararon
 
 #-
 
-t = categorical([1,2,3,4,5], ordered=true) # when using default it becomes the last level
+t = categorical([1,2,3,4,5], ordered=true) # el default es que se use el último nivel
 levels(recode(t, 300, [1,2]=>100, 3=>200))
 
-# ### Comparisons
+# ### Comparaciones
 
 x = categorical([1,2,3])
 xs = [x, categorical(x), categorical(x, ordered=true), categorical(x, ordered=true)]
 levels!(xs[2], [3,2,1])
 levels!(xs[4], [2,3,1])
-[a == b for a in xs, b in xs] # all are equal - comparison only by contents
+[a == b for a in xs, b in xs] # todos son iguales - compara sólo por contenidos
 
 #-
 
-signature(x::CategoricalArray) = (x, levels(x), isordered(x)) # this is actually the full signature of CategoricalArray
-## all are different, notice that x[1] and x[2] are unordered but have a different order of levels
+
+signature(x::CategoricalArray) = (x, levels(x), isordered(x)) # Esto es de hecho la asignación completa de un CategoricalArray - TODO?
+## todos son distintos, notemos que `x[1]` y `x[2]` no están ordenados pero tiene distintos órdenes de niveles
 [signature(a) == signature(b) for a in xs, b in xs]
 
 #-
 
-x[1] < x[2] # you cannot compare elements of unordered CategoricalArray
+x[1] < x[2] # no puedes comparar elementos de un CategoricalArray no ordenado
 
 #-
 
-t[1] < t[2] # but you can do it for an ordered one
+t[1] < t[2] # pero sí para uno ordenado
 
 #-
 
-isless(x[1], x[2]) # isless works within the same CategoricalArray even if it is not ordered
+isless(x[1], x[2]) # isless funciona dentro del mismo CategoricalArray aún si no está ordenado
 
 #-
 
-y = deepcopy(x) # but not across categorical arrays
+y = deepcopy(x) # pero no a través de arreglos categóricos
 isless(x[1], y[2])
 
 #-
 
-isless(get(x[1]), get(y[2])) # you can use get to make a comparison of the contents of CategoricalArray
+isless(get(x[1]), get(y[2])) # puedes usar `get` para hacer una comparación de contenidos de un `CategoricalArray`
 
 #-
 
-x[1] == y[2] # equality tests works OK across CategoricalArrays
+x[1] == y[2] # las pruebas de igualdad funcionan a través de CategoricalArrays
 
-# ### Categorical columns in a DataFrame
+# ### Columnas categóricas en un DataFrame
 
 df = DataFrame(x = 1:3, y = 'a':'c', z = ["a","b","c"])
 
 #-
 
-categorical!(df) # converts all eltype(AbstractString) columns to categorical
+categorical!(df) # conviertir todos las columnas `eltype(AbstractString)` a columnas categóricas
 
 #-
 
@@ -223,7 +225,7 @@ showcols(df)
 
 #-
 
-categorical!(df, :x) # manually convert to categorical column :x
+categorical!(df, :x) # convertir manualmente `:x` a una columna categórica
 
 #-
 
