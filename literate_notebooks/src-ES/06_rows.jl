@@ -116,7 +116,7 @@ deleterows!(x, 7) # borrar 1 fila
 
 #-
 
-deleterows!(x, 6:7) # borrar una colleción de filas
+deleterows!(x, 6:7) # borrar una colección de filas
 
 #-
 

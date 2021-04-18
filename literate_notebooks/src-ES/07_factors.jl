@@ -1,4 +1,3 @@
-# # Introduction to DataFrames
 # # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018**
 # (Traducción por Miguel Raz Guzmán, 18 de Abril de 2021)
@@ -11,7 +10,7 @@ using DataFrames
 
 # ### Constructores
 
-x = categorical(["A", "B", "B", "C"]) # sin orded
+x = categorical(["A", "B", "B", "C"]) # sin orden
 
 #-
 
@@ -217,7 +216,7 @@ df = DataFrame(x = 1:3, y = 'a':'c', z = ["a","b","c"])
 
 #-
 
-categorical!(df) # conviertir todos las columnas `eltype(AbstractString)` a columnas categóricas
+categorical!(df) # convierte todas las columnas `eltype(AbstractString)` a columnas categóricas
 
 #-
 

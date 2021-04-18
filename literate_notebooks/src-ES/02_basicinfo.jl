@@ -1,4 +1,3 @@
-# # Introduction to DataFrames
 # # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 23, 2018**
 # Traducción por Miguel Raz, Abril 17, 2021
@@ -28,7 +27,7 @@ describe(x)
 
 showcols(x)
 
-# `names` regresa el nombre de todas las columnas,
+# `names` devuelve el nombre de todas las columnas,
 
 names(x)
 
@@ -54,7 +53,7 @@ tail(y, 3)
 
 x[1], x[:A], x[:, 1]
 
-# Para tomar una hilera de un DataFrame, lo indexamos como sigue
+# Para tomar una fila de un DataFrame, lo indexamos como sigue
 
 x[1, :]
 

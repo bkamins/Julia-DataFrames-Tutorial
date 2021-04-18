@@ -31,7 +31,7 @@ CSV.write("x.csv", x)
 
 print(read("x.csv", String))
 
-# También lo podemos cargar de regreso. `use_mmap=false` desabilita el uso de `memory mapping` para los archivos se puedan borrar en la misma sesión en Windows.
+# También lo podemos cargar de vuelta. `use_mmap=false` desabilita el uso de `memory mapping` para los archivos se puedan borrar en la misma sesión en Windows.
 
 y = CSV.read("x.csv", use_mmap=false)
 

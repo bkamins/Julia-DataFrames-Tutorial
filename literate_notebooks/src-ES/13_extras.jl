@@ -32,11 +32,11 @@ prop(ft, 2) # y las columnas se normalizan a 1.0
 
 x = categorical(rand(1:3, 10))
 levels!(x, [3, 1, 2, 4]) # reorganizar niveles y añadir un nivel extra
-freqtable(x) # el orden se manteine y los nivelos no usados se meustran
+freqtable(x) # el orden se mantiene y los niveles no usados se muestran
 
 #-
 
-freqtable([1,1,2,3,missing]) # por default los valores faltatnes (`missing`s) se muestran en lista
+freqtable([1,1,2,3,missing]) # por default los valores faltantes (`missing`s) se muestran como lista
 
 #-
 
@@ -103,7 +103,7 @@ df2 = DataFrame(x=1:3, y=4:6, z=7:9)
 
 #-
 
-f(df, col) = df[col] # puees definir tus propias funcioens y ponerlas en una cadena (`chain` = cadena, como las de metal)
+f(df, col) = df[col] # puedes definir tus propias funcioens y ponerlas en una cadena (`chain` = cadena, como las de metal)
 @linq df |> where(:x .<= 4) |> f(:x)
 
 # ### DataFramesMeta - trabajando con `DataFrame` agrupado
@@ -149,7 +149,7 @@ df = DataFrame(a = 1:12, b = repeat(1:4, outer=3))
 
 #-
 
-## dichas condiciones suelen ser necesarios pero son demasiado complejas para escribirlas
+## dichas condiciones suelen ser necesarias pero son demasiado complejas para escribirlas
 @transform(df, x = ifelse.((:a .> 6) .& (:b .== 4), "yes", "no"))
 
 #-

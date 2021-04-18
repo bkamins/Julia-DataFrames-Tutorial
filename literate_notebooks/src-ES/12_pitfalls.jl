@@ -1,11 +1,10 @@
-# # Introduction to DataFrames
 # # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018**
 # (Traducción por Miguel Raz Guzmán Macedo, 18 de Abril de 2021)
 
 using DataFrames
 
-# ## Posibles errors comunes
+# ## Posibles errores comunes
 
 #-
 
@@ -49,7 +48,7 @@ g = groupby(x, :id)
 x[1:3, 1]=[2,2,2]
 g # pues, está mal por ahora - `g` es sólo un `view`
 
-# ### Recuerda: peudes filtrar columnas de un `DataFrame` usando booleans
+# ### Recuerda: puedes filtrar columnas de un `DataFrame` usando booleans
 
 srand(1)
 x = DataFrame(rand(5, 5))

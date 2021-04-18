@@ -49,7 +49,7 @@ map(x -> x(missing, 1), [+, - , *, /, div]) # part 2
 
 map(x -> x([1,2,missing]), [minimum, maximum, extrema, mean, any, float]) # part 3
 
-# `skipmissing` regresa un iterador que salta valores faltantes. Podemos usar `collect` y `skipmissing` para crear un arreglo que excluye estos valores faltantes.
+# `skipmissing` devuelve un iterador que salta valores faltantes. Podemos usar `collect` y `skipmissing` para crear un arreglo que excluye estos valores faltantes.
 
 collect(skipmissing([1, missing, 2, missing]))
 

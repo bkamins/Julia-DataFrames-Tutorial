@@ -1,4 +1,3 @@
-# # Introduction to DataFrames
 # # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018**
 # (Traducción por Miguel Raz Guzmán Macedo, 18 de abril de 2021)
@@ -62,11 +61,11 @@ x = DataFrame(rand(3, 5))
 
 #-
 
-map(mean, eachcol(x)) # mapea una función a cada columna y regresa un DataFrame
+map(mean, eachcol(x)) # mapea una función a cada columna y devuelve un DataFrame
 
 #-
 
-foreach(c -> println(c[1], ": ", mean(c[2])), eachcol(x)) # una iteración a secas regresa una tupla con nombres columnares y valores
+foreach(c -> println(c[1], ": ", mean(c[2])), eachcol(x)) # una iteración a secas devuelve una tupla con nombres columnares y valores
 
 #-
 
@@ -79,5 +78,5 @@ colwise(mean,groupby(x, :id)) # y funciona en un `GroupedDataFrame`
 
 #-
 
-map(r -> r[:x1]/r[:x2], eachrow(x)) # ahora el valor regresado es un `DataFrameRow` el cual funciona similar a un `DataFrame` de una sola fila
+map(r -> r[:x1]/r[:x2], eachrow(x)) # ahora el valor devuelto es un `DataFrameRow` el cual funciona similar a un `DataFrame` de una sola fila
 

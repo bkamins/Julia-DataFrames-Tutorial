@@ -14,7 +14,7 @@ x = DataFrame(id=[1,2,3,4], id2=[1,1,2,2], M1=[11,12,13,14], M2=[111,112,113,114
 
 #-
 
-melt(x, :id, [:M1, :M2]) # primero pasamos las variables de identificación y luego las medioms; `meltdf` (melt = derretir) crea un `view`
+melt(x, :id, [:M1, :M2]) # primero pasamos las variables de identificación y luego las medimos; `meltdf` (melt = derretir) crea un `view`
 
 #-
 
@@ -59,7 +59,7 @@ df = DataFrame(rand(3,2))
 df[:key] = [1,1,1]
 mdf = melt(df) # las llaves duplicadas se aceptan silenciosamente
 
-# ### Largo a ancho
+# ### De largo a ancho
 
 x = DataFrame(id = [1,1,1], id2=['a','b','c'], a1 = rand(3), a2 = rand(3))
 
