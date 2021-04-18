@@ -54,6 +54,12 @@ se menciona *funcionalidades* selecionadas de pacotes *selecionados* que conside
 [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) (aguardando uma atualização para oferecer suporte à versão DataFrames.jl 0.22),
 e [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl).
 
+Muitos devem ter tido contato com dados tabulares em outras linguagens, notoriamente Python com `pandas`
+ou R com `dplyr`. Para facilitar a adoção de Julia e DataFrames.jl, a documentação do pacote
+DataFrames.jl possui [uma seção com comparações das principais funcionalidades e operações do
+DataFrames.jl em relação à `pandas`, `dplyr` e
+Stata](https://dataframes.juliadata.org/latest/man/comparisons/#Comparisons).
+
 # Configurando Jupyter Notebook para trabalhar com DataFrames.jl
 
 Por padrão, o Jupyter Notebook limitará o número de linhas e colunas quando
@@ -128,6 +134,7 @@ informações sobre como localizar e especificar kernels Jupyter.
 | 2020-05-06 | Updated to DataFrames 0.21.0 (except load/save and extras) |
 | 2020-11-20 | Updated to DataFrames 0.22.0 (except DataFramesMeta.jl which does not work yet) |
 | 2020-11-26 | Updated to DataFramesMeta.jl 0.6; update by @pdeffebach |
+| 2021-04-18 | First Portuguese translation by @storopoli |
 
 # Sumário das funções-chave
 
