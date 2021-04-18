@@ -1,4 +1,3 @@
-# # Introduction to DataFrames
 # # Introducción a DataFrames
 # **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 23, 2018**
 # (Traducción de Miguel Raz Guzmán Macedo)
