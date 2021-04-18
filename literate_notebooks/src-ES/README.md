@@ -7,6 +7,13 @@
 
 Una breve introducción al uso de los [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
+Nota: si ya sabes como usar datos tabulares en otros lenguajes, notoriamente `pandas` en Python o `dplyr` en R, y Stata,
+este paquete te resultará muy familiar. Aún así hay detalles en donde difieron las funcionalidades principales,
+y vale la pena leer los siguientes materiales para evitar confusión:
+
+- un `cheatsheet` [de Julia <-> Python <-> Matlab](https://cheatsheets.quantecon.org/) de Quantecon
+- la documentación comparativa de DataFrames.jl [con los otros lenguajes](https://dataframes.juliadata.org/latest/man/comparisons/#Comparisons)
+
 Este tutorial contiene una especificación de la versión del proyecto bajo el cual
 debería correr. Para preparar este ambiente, antes de usar los notebooks, hay
 que correr la siguiente línea en el folder del proyecto:
