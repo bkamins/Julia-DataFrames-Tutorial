@@ -127,7 +127,7 @@ Matrix(x)
 
 Matrix{Int}(x)
 
-# ### Lidiando con nombres de columnas repetidos
+# ### Lipiando con nombres de columnas repetidos
 # 
 # Podemos pasar el keyword argument `makeunique` para permitir usar nombres duplicados (se desduplican)
 
