@@ -12,7 +12,7 @@ using DataFrames
 
 # ### Constructores
 # 
-# En esta secciónn, verás distintas maneras de crear un `DataFrame` usando el constructor `DataFrame()`.
+# En esta sección, verás distintas maneras de crear un `DataFrame` usando el constructor `DataFrame()`.
 # 
 # Primero, creemos un DataFrame vacío.
 
@@ -22,7 +22,7 @@ DataFrame() #  DataFrame vacío
 
 DataFrame(A=1:3, B=rand(3), C=randstring.([3,3,3]))
 
-# Podemos creat el `DataFrame` de un diccionario, en cuyo caso las llaves del diccionario estarán ordenadas para crear las columnas del `DataFrame`.
+# Podemos crear el `DataFrame` de un diccionario, en cuyo caso las llaves del diccionario estarán ordenadas para crear las columnas del `DataFrame`.
 
 x = Dict("A" => [1,2], "B" => [true, false], "C" => ['a', 'b'])
 DataFrame(x)
@@ -90,7 +90,6 @@ z = copy(x)
 
 # ### Conversión a matrices
 # 
-# Let's start by creating a `DataFrame` with two rows and two columns.
 # Empecemos creando un `DataFrame` con dos filas y dos columnas. 
 
 x = DataFrame(x=1:2, y=["A", "B"])
@@ -128,7 +127,7 @@ Matrix(x)
 
 Matrix{Int}(x)
 
-# ### Lidiando con nombres de columnas repetidos
+# ### Lipiando con nombres de columnas repetidos
 # 
 # Podemos pasar el keyword argument `makeunique` para permitir usar nombres duplicados (se desduplican)
 
@@ -142,4 +141,3 @@ df = DataFrame(:a=>1, :a=>2, :a_1=>3)
 # No puedes pasar `makeunique` para permitir duplicados en este caso.
 
 df = DataFrame(a=1, a=2, makeunique=true)
-
