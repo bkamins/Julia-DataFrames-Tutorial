@@ -90,7 +90,6 @@ z = copy(x)
 
 # ### Conversión a matrices
 # 
-# Let's start by creating a `DataFrame` with two rows and two columns.
 # Empecemos creando un `DataFrame` con dos filas y dos columnas. 
 
 x = DataFrame(x=1:2, y=["A", "B"])
