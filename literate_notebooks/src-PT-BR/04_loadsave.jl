@@ -1,64 +1,65 @@
-# # Introduction to DataFrames
-# **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 23, 2018**
+# # Introdução ao DataFrames
+# **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), 23 de Maio de 2018**
+#
+# Tradução de [Jose Storopoli](https://storopoli.io).
 
-using DataFrames # load package
+using DataFrames # carregar o pacote
 
-# ## Load and save DataFrames
-# We do not cover all features of the packages. Please refer to their documentation to learn them.
-# 
-# Here we'll load `CSV` to read and write CSV files and `JLD`, which allows us to work with a Julia native binary format.
+# ## Carregando e Salvando DataFrames
+# Não cobrimos todos os recursos dos pacotes. Consulte a documentação para aprendê-los.
+#
+# Aqui vamos carregar o pacote `CSV` para ler e escrever arquivos CSV e o pacote `JLD`, que nos permite trabalhar com um formato binário nativo Julia.
 
 using CSV
 using JLD
 
-# Let's create a simple `DataFrame` for testing purposes,
+# Vamos criar um `DataFrame` simples para fins de teste,
 
 x = DataFrame(A=[true, false, true], B=[1, 2, missing],
               C=[missing, "b", "c"], D=['a', missing, 'c'])
 
 
-# and use `eltypes` to look at the columnwise types.
+# e usar `eltypes` para ver os tipos de colunas.
 
 eltypes(x)
 
-# Let's use `CSV` to save `x` to disk; make sure `x.csv` does not conflict with some file in your working directory.
+# Vamos usar o pacote `CSV` para salvar `x` no disco; certifique-se de que `x.csv` não entre em conflito com algum arquivo em seu diretório de trabalho.
 
 CSV.write("x.csv", x)
 
-# Now we can see how it was saved by reading `x.csv`.
+# Agora podemos ver como ele foi salvo lendo `x.csv`.
 
 print(read("x.csv", String))
 
-# We can also load it back. `use_mmap=false` disables memory mapping so that on Windows the file can be deleted in the same session.
+# Também podemos carregá-lo de volta. `use_mmap = false` desativa o mapeamento de memória para que no Windows o arquivo possa ser excluído na mesma sessão.
 
 y = CSV.read("x.csv", use_mmap=false)
 
-# When loading in a `DataFrame` from a `CSV`, all columns allow `Missing` by default. Note that the column types have changed!
+# Ao carregar em um `DataFrame` de um `CSV`, todas as colunas permitem `Missing` por padrão. Observe que os tipos de coluna mudaram!
 
 eltypes(y)
 
-# Now let's save `x` to a file in a binary format; make sure that `x.jld` does not exist in your working directory.
+# Agora vamos salvar `x` em um arquivo em formato binário; certifique-se de que `x.jld` não exista em seu diretório de trabalho.
 
 save("x.jld", "x", x)
 
-# After loading in `x.jld` as `y`, `y` is identical to `x`.
+# Depois de carregar `x.jld` como `y`, vemos que `y` é idêntico a` x`.
 
 y = load("x.jld", "x")
 
-# Note that the column types of `y` are the same as those of `x`!
+# Observe que os tipos de coluna de `y` são iguais aos de `x`!
 
 eltypes(y)
 
-# Next, we'll create the files `bigdf.csv` and `bigdf.jld`, so be careful that you don't already have these files on disc!
-# 
-# In particular, we'll time how long it takes us to write a `DataFrame` with 10^3 rows and 10^5 columns to `.csv` and `.jld` files.  *You can expect JLD to be faster!* Use `compress=true` to reduce file sizes.
+# A seguir, criaremos os arquivos `bigdf.csv` e `bigdf.jld`, então tome cuidado para que você ainda não tenha esses arquivos no disco!
+#
+# Em particular, vamos cronometrar quanto tempo leva para escrevermos um `DataFrame` com 10^3 linhas e 10^5 colunas para arquivos `.csv` e `.jld`. *Você pode apostar que o JLD seja mais rápido!* Use `compress = true` para reduzir o tamanho dos arquivos.
 
 bigdf = DataFrame(Bool, 10^3, 10^2)
 @time CSV.write("bigdf.csv", bigdf)
 @time save("bigdf.jld", "bigdf", bigdf)
 getfield.(stat.(["bigdf.csv", "bigdf.jld"]), :size)
 
-# Finally, let's clean up. Do not run the next cell unless you are sure that it will not erase your important files.
+# Finalmente, vamos fazer uma faxina geral dos arquivos que criamos. Não execute a próxima célula a menos que tenha certeza de que seus arquivos importantes não serão apagados.
 
 foreach(rm, ["x.csv", "x.jld", "bigdf.csv", "bigdf.jld"])
-
