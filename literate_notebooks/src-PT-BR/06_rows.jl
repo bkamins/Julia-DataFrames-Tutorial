@@ -1,133 +1,134 @@
-# # Introduction to DataFrames
-# **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), Apr 21, 2018**
+# # Introdução ao DataFrames
+# **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), 23 de Maio de 2018**
+#
+# Tradução de [Jose Storopoli](https://storopoli.io).
 
-using DataFrames # load package
+using DataFrames # carregar o pacote
 srand(1);
 
-# ## Manipulating rows of DataFrame
+# ## Manipulando linhas de DataFrame
 
-#-
+# -
 
-# ### Reordering rows
+# ### Reordenando linhas
 
-x = DataFrame(id=1:10, x = rand(10), y = [zeros(5); ones(5)]) # and we hope that x[:x] is not sorted :)
+x = DataFrame(id=1:10, x=rand(10), y=[zeros(5); ones(5)]) # we esperamos x[:x] não esteja já ordenado :)
 
-#-
+# -
 
-issorted(x), issorted(x, :x) # check if a DataFrame or a subset of its columns is sorted
+issorted(x), issorted(x, :x) # verifica se um DataFrame ou um subconjunto das suas colunas está ordenado
 
-#-
+# -
 
-sort!(x, :x) # sort x in place
+sort!(x, :x) # ordena x *in-place*
 
-#-
+# -
 
-y = sort(x, :id) # new DataFrame
+y = sort(x, :id) # novo DataFrame
 
-#-
+# -
 
-sort(x, (:y, :x), rev=(true, false)) # sort by two columns, first is decreasing, second is increasing
+sort(x, (:y, :x), rev=(true, false)) # ordena por duas columnas, primeira é de maneira descrescente, segunda é de maneira crescente
 
-#-
+# -
 
-sort(x, (order(:y, rev=true), :x)) # the same as above
+sort(x, (order(:y, rev=true), :x)) # o mesmo que acima
 
-#-
+# -
 
-sort(x, (order(:y, rev=true), order(:x, by=v->-v))) # some more fancy sorting stuff
+sort(x, (order(:y, rev=true), order(:x, by=v -> -v))) # mais uma maneira elegante de ordenar
 
-#-
+# -
 
-x[shuffle(1:10), :] # reorder rows (here randomly)
+x[shuffle(1:10), :] # reordena linhas (agora de maneira aleatória)
 
-#-
+# -
 
 sort!(x, :id)
-x[[1,10],:] = x[[10,1],:] # swap rows
+x[[1,10],:] = x[[10,1],:] # trocar linhas
 x
 
-#-
+# -
 
-x[1,:], x[10,:] = x[10,:], x[1,:] # and swap again
+x[1,:], x[10,:] = x[10,:], x[1,:] # mais uma troca
 x
 
-# ### Merging/adding rows
+# ### Mesclando/adicionando linhas
 
 x = DataFrame(rand(3, 5))
 
-#-
+# -
 
-[x; x] # merge by rows - data frames must have the same column names; the same is vcat
+[x; x] # mesclar por linhas - os data frames devem ter os mesmos nomes de colunas; assim como vcat
 
-#-
+# -
 
-y = x[reverse(names(x))] # get y with other order of names
+y = x[reverse(names(x))] # obtenha y com outra ordenação de nomes de colunas
 
-#-
+# -
 
-vcat(x, y) # we get what we want as vcat does column name matching
+vcat(x, y) # nós conseguimos o que queremos, pois o vcat faz a correspondência dos nomes das colunas
 
-#-
+# -
 
-vcat(x, y[1:3]) # but column names must still match
+vcat(x, y[1:3]) # mas os nomes das colunas ainda devem corresponder
 
-#-
+# -
 
-append!(x, x) # the same but modifies x
+append!(x, x) # o mesmo mas modifica x *in-place*
 
-#-
+# -
 
-append!(x, y) # here column names must match exactly
+append!(x, y) # aqui os nomes das colunas devem corresponder exatamente
 
-#-
-
-push!(x, 1:5) # add one row to x at the end; must give correct number of values and correct types
+# -
+push!(x, 1:5) #  # adicione uma linha a x no final; deve fornecer o número correto de valores assim como os tipos corretos
 x
 
-#-
+# -
 
-push!(x, Dict(:x1=> 11, :x2=> 12, :x3=> 13, :x4=> 14, :x5=> 15)) # also works with dictionaries
+push!(x, Dict(:x1 => 11, :x2 => 12, :x3 => 13, :x4 => 14, :x5 => 15)) # também funciona com dicionários
 x
 
-# ### Subsetting/removing rows
+# ### Subconjunto/removendo linhas
 
 x = DataFrame(id=1:10, val='a':'j')
 
-#-
+# -
 
-x[1:2, :] # by index
+x[1:2, :] # por índice
 
-#-
+# -
 
-view(x, 1:2) # the same but a view
+view(x, 1:2) # o mesmo mas uma *view*
 
-#-
+# -
 
-x[repmat([true, false], 5), :] # by Bool, exact length required
+x[repmat([true, false], 5), :] # por `Bool`, requer comprimento exato
 
-#-
+# -
 
-view(x, repmat([true, false], 5), :) # view again
+view(x, repmat([true, false], 5), :) # *view* de novo
 
-#-
+# -
 
-deleterows!(x, 7) # delete one row
+deleterows!(x, 7) # deleta uma linha
 
-#-
+# -
 
-deleterows!(x, 6:7) # delete a collection of rows
+deleterows!(x, 6:7) # deleta uma coleção de linhas
 
-#-
+# -
 
 x = DataFrame([1:4, 2:5, 3:6])
 
-#-
+# -
 
-filter(r -> r[:x1] > 2.5, x) # create a new DataFrame where filtering function operates on DataFrameRow
+filter(r -> r[:x1] > 2.5, x) # crie um novo DataFrame onde a função de filtragem opera em `DataFrameRow`
 
-#-
+# -
 
-## in place modification of x, an example with do-block syntax
+## modificação *in-place* de x, um exemplo com uma sintaxe de bloco `do`
 filter!(x) do r
     if r[:x1] > 2.5
         return r[:x2] < 4.5
@@ -135,43 +136,42 @@ filter!(x) do r
     r[:x3] < 3.5
 end
 
-# ### Deduplicating
+# ### "Desduplicando"
 
 x = DataFrame(A=[1,2], B=["x","y"])
 append!(x, x)
 x[:C] = 1:4
 x
 
-#-
+# -
 
-unique(x, [1,2]) # get first unique rows for given index
+unique(x, [1,2]) # obtém as primeiras linhas únicas para determinado índice
 
-#-
+# -
 
-unique(x) # now we look at whole rows
+unique(x) # agora considerando todas as linhas
 
-#-
+# -
 
-nonunique(x, :A) # get indicators of non-unique rows
+nonunique(x, :A) # obtém indicadores de linhas não-únicas
 
-#-
+# -
 
-unique!(x, :B) # modify x in place
+unique!(x, :B) # modifica x *in-place*
 
-# ### Extracting one row from `DataFrame` into a vector
+# ### Extraíndo uma linha do `DataFrame` em um vetor
 
 x = DataFrame(x=[1,missing,2], y=["a", "b", missing], z=[true,false,true])
 
-#-
+# -
 
 cols = [:x, :y]
-[x[1, col] for col in cols] # subset of columns
+[x[1, col] for col in cols] # subconjunto de colunas
 
-#-
+# -
 
-[[x[i, col] for col in names(x)] for i in 1:nrow(x)] # vector of vectors, each entry contains one full row of x
+[[x[i, col] for col in names(x)] for i in 1:nrow(x)] # vetor de vetores, cada elemento contém uma linha completa de x
 
-#-
+# -
 
-Tuple(x[1, col] for col in cols) # similar construct for Tuples, when ported to Julia 0.7 NamedTuples will be added
-
+Tuple(x[1, col] for col in cols) # construtor similar para Tuplas, quando portado para Julia 0.7 NamedTuples (Tupla Nomeada) será adicionada
