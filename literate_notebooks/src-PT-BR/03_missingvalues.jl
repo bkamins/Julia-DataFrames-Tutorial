@@ -1,112 +1,113 @@
-# # Introduction to DataFrames
-# **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 23, 2018**
+# # Introdução ao DataFrames
+# **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), 23 de Maio de 2018**
+#
+# Tradução de [Jose Storopoli](https://storopoli.io).
 
-using DataFrames # load package
+using DataFrames # carregar o pacote
 
-# ## Handling missing values
-# 
-# A singelton type `Missings.Missing` allows us to deal with missing values.
+# ## Lidando com valores faltantes
+#
+# Um tipo de *singleton* `Missings.Missing` nos permite lidar com valores ausentes.
 
 missing, typeof(missing)
 
-# Arrays automatically create an appropriate union type.
+# As arrays criam automaticamente um tipo de união `Union` apropriado.
 
 x = [1, 2, missing, 3]
 
-# `ismissing` checks if passed value is missing.
+# `ismissing` verifica se o valor passado é faltante (`missing`).
 
 ismissing(1), ismissing(missing), ismissing(x), ismissing.(x)
 
-# We can extract the type combined with Missing from a `Union` via
-# 
-# (This is useful for arrays!)
+# Podemos extrair o tipo combinado com `Missing` de uma `Union` por meio de
+#
+# (Isso é útil para matrizes!)
 
 eltype(x), Missings.T(eltype(x))
 
-# `missing` comparisons produce `missing`.
+# comparações de `missing` produzem `missing`.
 
 missing == missing, missing != missing, missing < missing
 
-# This is also true when `missing`s are compared with values of other types.
+# Isso também ocorre quando os `missing`s são comparados com valores de outros tipos.
 
 1 == missing, 1 != missing, 1 < missing
 
-# `isequal`, `isless`, and `===` produce results of type `Bool`.
+# `isequal`, `isless`, e `===` produzem resultado de tipo `Bool`.
 
 isequal(missing, missing), missing === missing, isequal(1, missing), isless(1, missing)
 
-# In the next few examples, we see that many (not all) functions handle `missing`.
+# Nos próximos exemplos, vemos que muitas (mas não todas) funções coseguem lidar com `missing`.
 
-map(x -> x(missing), [sin, cos, zero, sqrt]) # part 1
+map(x -> x(missing), [sin, cos, zero, sqrt]) # parte 1
 
-#-
+# -
 
-map(x -> x(missing, 1), [+, - , *, /, div]) # part 2 
+map(x -> x(missing, 1), [+, - , *, /, div]) # parte 2
 
-#-
+# -
 
-map(x -> x([1,2,missing]), [minimum, maximum, extrema, mean, any, float]) # part 3
+map(x -> x([1,2,missing]), [minimum, maximum, extrema, mean, any, float]) # parte 3
 
-# `skipmissing` returns iterator skipping missing values. We can use `collect` and `skipmissing` to create an array that excludes these missing values.
+# `skipmissing` retorna um iterador ignorando os valores `missing`s. Podemos usar `collect` e `skipmissing` para criar um array que exclui esses valores `missing`s.
 
 collect(skipmissing([1, missing, 2, missing]))
 
-# Similarly, here we combine `collect` and `Missings.replace` to create an array that replaces all missing values with some value (`NaN` in this case).
+# Da mesma forma, aqui combinamos `collect` e `Missings.replace` para criar uma array que substitui todos os valores `missing`s por algum valor (`NaN` neste caso).
 
 collect(Missings.replace([1.0, missing, 2.0, missing], NaN))
 
-# Another way to do this:
+# Uma outra maneira de fazer o mesmo:
 
 coalesce.([1.0, missing, 2.0, missing], NaN)
 
-# Caution: `nothing` would also be replaced here (for Julia 0.7 a more sophisticated behavior of `coalesce` that allows to avoid this problem is planned).
+# Cuidado: `nothing` também seria substituído aqui (para Julia 0.7 um comportamento mais sofisticado de `coalesce` que permite evitar este problema está planejado).
 
 coalesce.([1.0, missing, nothing, missing], NaN)
 
-# You can use `recode` if you have homogenous output types.
+# Você pode usar `recode` se tiver tipos de saída homogêneos.
 
-recode([1.0, missing, 2.0, missing], missing=>NaN)
+recode([1.0, missing, 2.0, missing], missing => NaN)
 
-# You can use `unique` or `levels` to get unique values with or without missings, respectively.
+# Você pode usar `unique` ou `levels` para obter valores únicos com ou sem `missing`s, respectivamente.
 
 unique([1, missing, 2, missing]), levels([1, missing, 2, missing])
 
-# In this next example, we convert `x` to `y` with `allowmissing`, where `y` has a type that accepts missings.
+# No próximo exemplo, convertemos `x` em `y` com `allowmissing`, onde `y` tem um tipo que aceita `missing`s.
 
 x = [1,2,3]
 y = allowmissing(x)
 
-# Then, we convert back with `disallowmissing`. This would fail if `y` contained missing values!
+# Então, nós convertemos de volta com `disallowmissing`. Isso falharia se `y` contivesse valores `missing`!
 
 z = disallowmissing(y)
-x,y,z
+x, y, z
 
-# In this next example, we show that the type of each column in `x` is initially `Int64`. After using `allowmissing!` to accept missing values in columns 1 and 3, the types of those columns become `Union`s of `Int64` and `Missings.Missing`.
+# No próximo exemplo, mostramos que o tipo de cada coluna de `x` é inicialmente `Int64`. Depois de usar `allowmissing!` Para aceitar valores `missing`s nas colunas 1 e 3, os tipos dessas colunas se tornam `Union`s de `Int64` e `Missings.Missing`.
 
 x = DataFrame(Int, 2, 3)
-println("Before: ", eltypes(x))
-allowmissing!(x, 1) # make first column accept missings
-allowmissing!(x, :x3) # make :x3 column accept missings
-println("After: ", eltypes(x))
+println("Antes: ", eltypes(x))
+allowmissing!(x, 1) # fazer com que a primeira coluna aceite `missing`s
+allowmissing!(x, :x3) # fazer com que a coluna `:x3` aceite `missing`s
+println("Depois: ", eltypes(x))
 
-# In this next example, we'll use `completecases` to find all the rows of a `DataFrame` that have complete data.
+# Neste próximo exemplo, usaremos `completecases` para encontrar todas as linhas de um `DataFrame` que possuem dados completos.
 
 x = DataFrame(A=[1, missing, 3, 4], B=["A", "B", missing, "C"])
 println(x)
-println("Complete cases:\n", completecases(x))
+println("Casos completos:\n", completecases(x))
 
-# We can use `dropmissing` or `dropmissing!` to remove the rows with incomplete data from a `DataFrame` and either create a new `DataFrame` or mutate the original in-place.
+# Podemos usar `dropmissing` ou `dropmissing!` para remover as linhas com dados incompletos de um `DataFrame` para criar um novo `DataFrame` ou modificar o original *in-place*.
 
 y = dropmissing(x)
 dropmissing!(x)
 [x, y]
 
-# When we call `showcols` on a `DataFrame` with dropped missing values, the columns still allow missing values.
+# Quando usamos `showcols` em um `DataFrame` eliminando os valores `missing`s, as colunas ainda permitem valores `missing`s.
 
 showcols(x)
 
-# Since we've excluded missing values, we can safely use `disallowmissing!` so that the columns will no longer accept missing values.
+# Uma vez que excluímos valores valores `missing`s, podemos usar com segurança `disallowmissing!` para que as colunas não aceitem mais valores `missing`s.
 
 disallowmissing!(x)
 showcols(x)
-
