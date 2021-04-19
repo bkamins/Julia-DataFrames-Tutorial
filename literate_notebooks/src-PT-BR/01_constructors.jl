@@ -1,143 +1,144 @@
-# # Introduction to DataFrames
-# **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 23, 2018**
-# 
-# Let's get started by loading the `DataFrames` package.
+# # Introdução ao DataFrames
+# **[Bogumił Kamiński](http://bogumilkaminski.pl/about/), 23 de Maio de 2018**
+#
+# Tradução de [Jose Storopoli](https://storopoli.io).
+#
+# Vamos começar carregando o pacote `DataFrames`
 
 using DataFrames
 
-# ## Constructors and conversion
+# ## Construtores e conversões
 
-#-
+# -
 
-# ### Constructors
-# 
-# In this section, you'll see many ways to create a `DataFrame` using the `DataFrame()` constructor.
-# 
-# First, we could create an empty DataFrame,
+# ### Construtores
+#
+# Nesta seção, você verá as diferentes maneiras de criar um `DataFrame` usando o construtor `DataFrame()`
+#
+# Primeiramente, é possível criar um `DataFrame` vazio
 
-DataFrame() # empty DataFrame
+DataFrame() # DataFrame vazio
 
-# Or we could call the constructor using keyword arguments to add columns to the `DataFrame`.
+# Podemos também passar argumentos de palavras-chave (*keyword arguments*) no construtor para adicionar colunas ao `DataFrame`.
 
 DataFrame(A=1:3, B=rand(3), C=randstring.([3,3,3]))
 
-# We can create a `DataFrame` from a dictionary, in which case keys from the dictionary will be sorted to create the `DataFrame` columns.
+# Podemos criar um `DataFrame` a partir de um dicionário, caso em que as chaves do dicionário serão usadas para criar as colunas do `DataFrame`.
 
 x = Dict("A" => [1,2], "B" => [true, false], "C" => ['a', 'b'])
 DataFrame(x)
 
-# Rather than explicitly creating a dictionary first, as above, we could pass `DataFrame` arguments with the syntax of dictionary key-value pairs. 
-# 
-# Note that in this case, we use symbols to denote the column names and arguments are not sorted. For example, `:A`, the symbol, produces `A`, the name of the first column here:
+# Em vez de criar explicitamente um dicionário primeiro, como acima, poderíamos passar argumentos `DataFrame` com a sintaxe dos pares chave-valor do dicionário.
+#
+# Observe que, neste caso, usamos símbolos para denotar os nomes das colunas e os argumentos não são ordenados. Por exemplo, o símbolo `:A`produz`A` que será o nome da primeira coluna aqui:
 
 DataFrame(:A => [1,2], :B => [true, false], :C => ['a', 'b'])
 
-# Here we create a `DataFrame` from a vector of vectors, and each vector becomes a column.
+# Aqui criamos um `DataFrame` a partir de um vetor de vetores, e cada vetor se torna uma coluna.
 
 DataFrame([rand(3) for i in 1:3])
 
-#  For now we can construct a single `DataFrame` from a `Vector` of atoms, creating a `DataFrame` with a single row. In future releases of DataFrames.jl, this will throw an error.
+# Por enquanto, podemos construir um único `DataFrame` a partir de um `Vector` atômico, criando um `DataFrame` com uma única linha. Em versões futuras de DataFrames.jl, isso gerará um erro.
 
 DataFrame(rand(3))
 
-# Instead use a transposed vector if you have a vector of atoms (in this way you effectively pass a two dimensional array to the constructor which is supported).
+# Em vez disso, use um vetor transposto se você tiver um vetor atômico (dessa forma, você passa efetivamente uma array bidimensional para o construtor o que é compatível).
 
 DataFrame(transpose([1, 2, 3]))
 
-# Pass a second argument to give the columns names.
+# Passe um segundo argumento para dar nomes às colunas.
 
 DataFrame([1:3, 4:6, 7:9], [:A, :B, :C])
 
-# Here we create a `DataFrame` from a matrix,
+# Aqui nós criamos um `DataFrame` de uma matriz,
 
-DataFrame(rand(3,4))
+DataFrame(rand(3, 4))
 
-# and here we do the same but also pass column names.
+# e aqui nós fazemos o mesmo mas também passando nomes de colunas.
 
-DataFrame(rand(3,4), Symbol.('a':'d'))
+DataFrame(rand(3, 4), Symbol.('a':'d'))
 
-# We can also construct an uninitialized DataFrame.
-# 
-# Here we pass column types, names and number of rows; we get `missing` in column :C because `Any >: Missing`.
+# Podemos também construir um `DataFrame` não-inicializado.
+#
+# Aqui passamos os tipos de coluna, nomes e número de linhas; obtemos `missing` na coluna `:C` porque `Any >: Missing`.
 
 DataFrame([Int, Float64, Any], [:A, :B, :C], 1)
 
-# Here we create a `DataFrame`, but column `:C` is #undef and Jupyter has problem with displaying it. (This works OK at the REPL.)
-# 
-# This will be fixed in next release of DataFrames!
+# Aqui criamos um `DataFrame`, mas a coluna`:C` é #undef e o Jupyter tem problemas para exibi-la. (Isso funciona OK no REPL.)
+#
+# Isto será consertado na próxima versão do DataFrames!
 
 DataFrame([Int, Float64, String], [:A, :B, :C], 1)
 
-# To initialize a `DataFrame` with column names, but no rows use
+# Para inicializar um `DataFrame` com nomes de colunas, mas sem linhas use
 
-DataFrame([Int, Float64, String], [:A, :B, :C], 0) 
+DataFrame([Int, Float64, String], [:A, :B, :C], 0)
 
-# This syntax gives us a quick way to create homogenous `DataFrame`.
+# Essa sintaxe permite uma maneira rápida de criar um `DataFrame` homogêneo:
 
 DataFrame(Int, 3, 5)
 
-# This example is similar, but has nonhomogenous columns.
+# Esse exemplo é similar, mas possui colunas não-homogêneas.
 
 DataFrame([Int, Float64], 4)
 
-# Finally, we can create a `DataFrame` by copying an existing `DataFrame`.
-# 
-# Note that `copy` creates a shallow copy.
+# Finalmente, podemos criar um `DataFrame` copiando um `DataFrame` existente.
+#
+# Note que `copy` cria uma cópia raza.
 
 y = DataFrame(x)
 z = copy(x)
 (x === y), (x === z), isequal(x, z)
 
-# ### Conversion to a matrix
-# 
-# Let's start by creating a `DataFrame` with two rows and two columns.
+# ### Conversões para Matrizes
+#
+# Vamos começar criando um `DataFrame` com duas linhas e duas colunas.
 
 x = DataFrame(x=1:2, y=["A", "B"])
 
-# We can create a matrix by passing this `DataFrame` to `Matrix`.
+# Podemos criar uma matriz passando esse `DataFrame` para `Matrix`.
 
 Matrix(x)
 
-# This would work even if the `DataFrame` had some `missing`s:
+# Isso funciona mesmo se `DataFrame` possuir alguns `missing`s:
 
 x = DataFrame(x=1:2, y=[missing,"B"])
 
-#-
+# -
 
 Matrix(x)
 
-# In the two previous matrix examples, Julia created matrices with elements of type `Any`. We can see more clearly that the type of matrix is inferred when we pass, for example, a `DataFrame` of integers to `Matrix`, creating a 2D `Array` of `Int64`s:
+# Nos dois exemplos de matriz anteriores, Julia criou matrizes com elementos do tipo `Any`. Podemos ver mais claramente que o tipo de matriz é inferido quando passamos, por exemplo, um `DataFrame` de inteiros para`Matrix`, criando um `Array` 2D de `Int64`s:
 
 x = DataFrame(x=1:2, y=3:4)
 
-#-
+# -
 
 Matrix(x)
 
-# In this next example, Julia correctly identifies that `Union` is needed to express the type of the resulting `Matrix` (which contains `missing`s).
+# No próximo exemplo, Julia identifica corretamente que `Union` é necessário para expressar o tipo resultante de `Matrix` (que contém `missing`s).
 
 x = DataFrame(x=1:2, y=[missing,4])
 
-#-
+# -
 
 Matrix(x)
 
-# Note that we can't force a conversion of `missing` values to `Int`s!
+# Note que não conseguimos forçar uma conversão de valores `missing` para `Int`s!
 
 Matrix{Int}(x)
 
-# ### Handling of duplicate column names
-# 
-# We can pass the `makeunique` keyword argument to allow passing duplicate names (they get deduplicated)
+# ### Lidando com nomes de colunas duplicados
+#
+# Nós podemos passar o argumento de palavra-chave `makeunique` para permitir o uso de nomes duplicados de colunas (eles serão "deduplicados")
 
-df = DataFrame(:a=>1, :a=>2, :a_1=>3; makeunique=true)
+df = DataFrame(:a => 1, :a => 2, :a_1 => 3; makeunique=true)
 
-# Otherwise, duplicates will not be allowed in the future.
+# Caso contrário, nomes duplicados não serão permitidos no futuro.
 
-df = DataFrame(:a=>1, :a=>2, :a_1=>3)
+df = DataFrame(:a => 1, :a => 2, :a_1 => 3)
 
-# A constructor that is passed column names as keyword arguments is a corner case.
-# You cannot pass `makeunique` to allow duplicates here.
+# Um construtor que recebe nomes de coluna como argumentos de palavra-chave é um caso excepcional.
+# Não é permitido usar `makeunique` aqui para permitir nomes duplicados.
 
 df = DataFrame(a=1, a=2, makeunique=true)
-
