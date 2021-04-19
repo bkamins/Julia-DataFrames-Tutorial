@@ -3,7 +3,7 @@
 #
 # Tradução de [Jose Storopoli](https://storopoli.io).
 
-using DataFrames # load package
+using DataFrames # carregar o pacote
 
 # ## Obtendo informações básicas sobre um data frame
 #
