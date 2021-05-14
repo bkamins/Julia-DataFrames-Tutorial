@@ -1,8 +1,8 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), November 2020, 2020
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 2021
 
-**The tutorial is for DataFrames 0.22.1**
+**The tutorial is for DataFrames 1.1.1**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -15,27 +15,27 @@ command line:
 julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
-Tested under Julia 1.5.3. The project dependencies are the following:
+Tested under Julia 1.6.1. The project dependencies are the following:
 
 ```
-  [69666777] Arrow v1.0.1
-  [6e4b80f9] BenchmarkTools v0.5.0
-  [336ed68f] CSV v0.8.2
-  [324d7699] CategoricalArrays v0.9.0
+  [69666777] Arrow v1.4.1
+  [6e4b80f9] BenchmarkTools v0.7.0
+  [336ed68f] CSV v0.8.4
+  [324d7699] CategoricalArrays v0.10.0
   [944b1d66] CodecZlib v0.7.0
-  [a93c6f00] DataFrames v0.22.1
-  [1313f7d8] DataFramesMeta v0.6.0
-  [5789e2e9] FileIO v1.4.4
-  [da1fdf0e] FreqTables v0.4.2
-  [7073ff75] IJulia v1.23.0
-  [babc3d20] JDF v0.2.20
-  [9da8a3cd] JLSO v2.4.0
-  [b9914132] JSONTables v1.0.0
-  [86f7a689] NamedArrays v0.9.4
+  [a93c6f00] DataFrames v1.1.1
+  [1313f7d8] DataFramesMeta v0.6.1
+  [5789e2e9] FileIO v1.8.2
+  [da1fdf0e] FreqTables v0.4.4
+  [7073ff75] IJulia v1.23.2
+  [babc3d20] JDF v0.4.3
+  [9da8a3cd] JLSO v2.5.0
+  [b9914132] JSONTables v1.0.1
+  [86f7a689] NamedArrays v0.9.5
   [b98c9c47] Pipe v1.3.0
-  [2dfb63ee] PooledArrays v0.5.3
-  [f3b207a7] StatsPlots v0.14.17
-  [bd369af6] Tables v1.2.1
+  [2dfb63ee] PooledArrays v1.2.1
+  [f3b207a7] StatsPlots v0.14.21
+  [bd369af6] Tables v1.4.2
   [a5390f91] ZipFile v0.9.3
   [9a3f8284] Random
   [10745b16] Statistics
@@ -52,7 +52,7 @@ along with selected file reading and writing packages.
 In the last [extras](https://github.com/bkamins/Julia-DataFrames-Tutorial/blob/master/13_extras.ipynb)
 part mentions *selected* functionalities of *selected* useful packages that I find useful for data manipulation, currently those are:
 [FreqTables](https://github.com/nalimilan/FreqTables.jl),
-[DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) (pending its update to support DataFrames.jl 0.22 release),
+[DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl)
 [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl).
 
 # Setting up Jupyter Notebook for work with DataFrames.jl
@@ -128,16 +128,17 @@ Changelog:
 | 2020-05-06 | Updated to DataFrames 0.21.0 (except load/save and extras) |
 | 2020-11-20 | Updated to DataFrames 0.22.0 (except DataFramesMeta.jl which does not work yet) |
 | 2020-11-26 | Updated to DataFramesMeta.jl 0.6; update by @pdeffebach |
+| 2021-05-15 | Updated to DataFrames.jl 1.1.1 |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`, `eachcol`, `eachrow`, `Tables.namedtupleiterator`, `empty`, `empty!`
 2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`, `isapprox`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `nonmissingtype`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
-4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Arrow.write`, `Arrow.Table` (from Arrow.jl package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.savejdf`, `JDF.loadjdf`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
+4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Arrow.write`, `Arrow.Table` (from Arrow.jl package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.save`, `JDF.load`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
 5. Working with columns: `rename`, `rename!`, `hcat`, `insertcols!`, `categorical!`, `columnindex`, `hasproperty`, `select`, `select!`, `transform`, `transform!`, `combine`, `Not`, `All`, `Between`, `ByRow`, `AsTable`
-6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `delete!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@pipe` (from `Pipe` package), `only`
-7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `get`, `recode`, `recode!`
+6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `delete!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@pipe` (from `Pipe` package), `only`, `subset`, `subset!`
+7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `unwrap`, `recode`, `recode!`
 8. Joining: `innerjoin`, `leftjoin`, `rightjoin`, `outerjoin`, `semijoin`, `antijoin`, `crossjoin`
 9. Reshaping: `stack`, `unstack`
 10. Transforming: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@pipe` (from `Pipe` package)
