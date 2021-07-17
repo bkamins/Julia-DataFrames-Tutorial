@@ -1,8 +1,8 @@
 # An Introduction to DataFrames
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), May 2021
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), July 17, 2021
 
-**The tutorial is for DataFrames 1.1.1**
+**The tutorial is for DataFrames 1.2.0**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -18,24 +18,24 @@ julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 Tested under Julia 1.6.1. The project dependencies are the following:
 
 ```
-  [69666777] Arrow v1.4.1
-  [6e4b80f9] BenchmarkTools v0.7.0
-  [336ed68f] CSV v0.8.4
+  [69666777] Arrow v1.6.0
+  [6e4b80f9] BenchmarkTools v1.1.1
+  [336ed68f] CSV v0.8.5
   [324d7699] CategoricalArrays v0.10.0
+  [8be319e6] Chain v0.4.7
   [944b1d66] CodecZlib v0.7.0
-  [a93c6f00] DataFrames v1.1.1
-  [1313f7d8] DataFramesMeta v0.6.1
-  [5789e2e9] FileIO v1.8.2
+  [a93c6f00] DataFrames v1.2.0
+  [1313f7d8] DataFramesMeta v0.8.0
+  [5789e2e9] FileIO v1.10.1
   [da1fdf0e] FreqTables v0.4.4
   [7073ff75] IJulia v1.23.2
-  [babc3d20] JDF v0.4.3
-  [9da8a3cd] JLSO v2.5.0
+  [babc3d20] JDF v0.4.4
+  [9da8a3cd] JLSO v2.6.0
   [b9914132] JSONTables v1.0.1
   [86f7a689] NamedArrays v0.9.5
-  [b98c9c47] Pipe v1.3.0
   [2dfb63ee] PooledArrays v1.2.1
-  [f3b207a7] StatsPlots v0.14.21
-  [bd369af6] Tables v1.4.2
+  [f3b207a7] StatsPlots v0.14.25
+  [bd369af6] Tables v1.4.4
   [a5390f91] ZipFile v0.9.3
   [9a3f8284] Random
   [10745b16] Statistics
@@ -129,6 +129,7 @@ Changelog:
 | 2020-11-20 | Updated to DataFrames 0.22.0 (except DataFramesMeta.jl which does not work yet) |
 | 2020-11-26 | Updated to DataFramesMeta.jl 0.6; update by @pdeffebach |
 | 2021-05-15 | Updated to DataFrames.jl 1.1.1 |
+| 2021-05-15 | Updated to DataFrames.jl 1.2 and DataFramesMeta.jl 0.8, added Chain.jl instead of Pipe.jl |
 
 # Core functions summary
 
@@ -137,12 +138,12 @@ Changelog:
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `nonmissingtype`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Arrow.write`, `Arrow.Table` (from Arrow.jl package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.save`, `JDF.load`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
 5. Working with columns: `rename`, `rename!`, `hcat`, `insertcols!`, `categorical!`, `columnindex`, `hasproperty`, `select`, `select!`, `transform`, `transform!`, `combine`, `Not`, `All`, `Between`, `ByRow`, `AsTable`
-6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `delete!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@pipe` (from `Pipe` package), `only`, `subset`, `subset!`
+6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `delete!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@chain` (from `Chain.jl` package), `only`, `subset`, `subset!`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `unwrap`, `recode`, `recode!`
 8. Joining: `innerjoin`, `leftjoin`, `rightjoin`, `outerjoin`, `semijoin`, `antijoin`, `crossjoin`
 9. Reshaping: `stack`, `unstack`
-10. Transforming: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@pipe` (from `Pipe` package)
+10. Transforming: `groupby`, `mapcols`, `parent`, `groupcols`, `valuecols`, `groupindices`, `keys` (for `GroupedDataFrame`), `combine`, `select`, `select!`, `transform`, `transform!`, `@chain` (from `Chain.jl` package)
 11. Extras:
     * [FreqTables](https://github.com/nalimilan/FreqTables.jl): `freqtable`, `prop`, `Name`
-    * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@where`, `@select`, `@transform`, `@orderby`, `@linq`, `@by`, `@combine`, `@eachrow`, `@newcol`, `^`, `cols`
+    * [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl): `@with`, `@subset`, `@select`, `@transform`, `@orderby`, `@by`, `@combine`, `@eachrow`, `@newcol`, `^`, `cols`, `@eachrow`
     * [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl): `@df`, `plot`, `density`, `histogram`,`boxplot`, `violin`
