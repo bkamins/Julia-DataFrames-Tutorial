@@ -1,8 +1,8 @@
-# An Introduction to DataFrames
+# An Introduction to DataFrames.jl
 
 [Bogumił Kamiński](http://bogumilkaminski.pl/about/), December 12, 2021
 
-**The tutorial is for DataFrames 1.3.0**
+**The tutorial is for DataFrames.jl 1.3.0**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
