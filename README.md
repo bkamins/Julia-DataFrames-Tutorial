@@ -1,8 +1,8 @@
 # An Introduction to DataFrames.jl
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), December 12, 2021
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), October 5, 2022
 
-**The tutorial is for DataFrames.jl 1.3.0**
+**The tutorial is for DataFrames.jl 1.4.0**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -15,28 +15,28 @@ command line:
 julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
-Tested under Julia 1.7.0. The project dependencies are the following:
+Tested under Julia 1.8.2. The project dependencies are the following:
 
 ```
-  [69666777] Arrow v2.2.0
-  [6e4b80f9] BenchmarkTools v1.2.2
-  [336ed68f] CSV v0.9.11
-  [324d7699] CategoricalArrays v0.10.2
-  [8be319e6] Chain v0.4.10
+  [69666777] Arrow v2.3.0
+  [6e4b80f9] BenchmarkTools v1.3.1
+  [336ed68f] CSV v0.10.4
+  [324d7699] CategoricalArrays v0.10.7
+  [8be319e6] Chain v0.5.0
   [944b1d66] CodecZlib v0.7.0
-  [a93c6f00] DataFrames v1.3.0
-  [1313f7d8] DataFramesMeta v0.10.0
-  [5789e2e9] FileIO v1.11.2
+  [a93c6f00] DataFrames v1.4.0
+  [1313f7d8] DataFramesMeta v0.12.0
+  [5789e2e9] FileIO v1.15.0
   [da1fdf0e] FreqTables v0.4.5
-  [7073ff75] IJulia v1.23.2
-  [babc3d20] JDF v0.4.5
-  [9da8a3cd] JLSO v2.6.0
-  [b9914132] JSONTables v1.0.2
+  [7073ff75] IJulia v1.23.3
+  [babc3d20] JDF v0.5.1
+  [9da8a3cd] JLSO v2.7.0
+  [b9914132] JSONTables v1.0.3
   [86f7a689] NamedArrays v0.9.6
-  [2dfb63ee] PooledArrays v1.4.0
-  [f3b207a7] StatsPlots v0.14.29
-  [bd369af6] Tables v1.6.0
-  [a5390f91] ZipFile v0.9.4
+  [2dfb63ee] PooledArrays v1.4.2
+  [f3b207a7] StatsPlots v0.15.3
+  [bd369af6] Tables v1.9.0
+  [a5390f91] ZipFile v0.10.0
   [9a3f8284] Random
   [10745b16] Statistics
 ```
@@ -54,19 +54,6 @@ part mentions *selected* functionalities of *selected* useful packages that I fi
 [FreqTables.jl](https://github.com/nalimilan/FreqTables.jl),
 [DataFramesMeta.jl](https://github.com/JuliaStats/DataFramesMeta.jl)
 [StatsPlots.jl](https://github.com/JuliaPlots/StatsPlots.jl).
-
-# Setting up Jupyter Notebook for work with DataFrames.jl
-
-By default Jupyter Notebook will limit the number of rows and columns when
-displaying a data frame to roughly fit the screen size (like in the REPL).
-
-You can override this behavior by setting `ENV["COLUMNS"]` or `ENV["LINES"]`
-variables to hold the maximum width and height of output in characters
-respectively when running a notebook. Alternatively you can add the following
-entry `"COLUMNS": "1000", "LINES": "100"` to `"env"` variable in your Jupyter
-kernel file. See
-[here](https://jupyter-client.readthedocs.io/en/stable/kernels.html) for
-information about location and specification of Jupyter kernels.
 
 # TOC
 
@@ -131,15 +118,16 @@ Changelog:
 | 2021-05-15 | Updated to DataFrames.jl 1.1.1 |
 | 2021-05-15 | Updated to DataFrames.jl 1.2 and DataFramesMeta.jl 0.8, added Chain.jl instead of Pipe.jl |
 | 2021-12-12 | Updated to DataFrames.jl 1.3 |
+| 2021-10-05 | Updated to DataFrames.jl 1.4 |
 
 # Core functions summary
 
 1. Constructors: `DataFrame`, `DataFrame!`, `Tables.rowtable`, `Tables.columntable`, `Matrix`, `eachcol`, `eachrow`, `Tables.namedtupleiterator`, `empty`, `empty!`
-2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`, `isapprox`
+2. Getting summary: `size`, `nrow`, `ncol`, `describe`, `names`, `eltypes`, `first`, `last`, `getindex`, `setindex!`, `@view`, `isapprox`, `metadata`, `metadata!`, `colmetadata`, `colmetadata!`
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `nonmissingtype`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Arrow.write`, `Arrow.Table` (from Arrow.jl package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.save`, `JDF.load`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
 5. Working with columns: `rename`, `rename!`, `hcat`, `insertcols!`, `categorical!`, `columnindex`, `hasproperty`, `select`, `select!`, `transform`, `transform!`, `combine`, `Not`, `All`, `Between`, `ByRow`, `AsTable`
-6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleteat!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@chain` (from `Chain.jl` package), `only`, `subset`, `subset!`
+6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleteat!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@chain` (from `Chain.jl` package), `only`, `subset`, `subset!`, `shuffle`, `prepend!`, `pushfirst!`, `insert!`, `keepat!`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `unwrap`, `recode`, `recode!`
 8. Joining: `innerjoin`, `leftjoin`, `leftjoin!`, `rightjoin`, `outerjoin`, `semijoin`, `antijoin`, `crossjoin`
 9. Reshaping: `stack`, `unstack`
