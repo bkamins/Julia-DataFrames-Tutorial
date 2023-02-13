@@ -1,8 +1,8 @@
 # An Introduction to DataFrames.jl
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), October 5, 2022
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), February 13, 2023
 
-**The tutorial is for DataFrames.jl 1.4.0**
+**The tutorial is for DataFrames.jl 1.5.0**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -15,30 +15,30 @@ command line:
 julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
-Tested under Julia 1.8.2. The project dependencies are the following:
+Tested under Julia 1.9.0. The project dependencies are the following:
 
 ```
-  [69666777] Arrow v2.3.0
-  [6e4b80f9] BenchmarkTools v1.3.1
-  [336ed68f] CSV v0.10.4
+  [69666777] Arrow v2.4.3
+  [6e4b80f9] BenchmarkTools v1.3.2
+  [336ed68f] CSV v0.10.9
   [324d7699] CategoricalArrays v0.10.7
   [8be319e6] Chain v0.5.0
-  [944b1d66] CodecZlib v0.7.0
-  [a93c6f00] DataFrames v1.4.0
-  [1313f7d8] DataFramesMeta v0.12.0
-  [5789e2e9] FileIO v1.15.0
+  [944b1d66] CodecZlib v0.7.1
+  [a93c6f00] DataFrames v1.5.0
+  [1313f7d8] DataFramesMeta v0.13.0
+  [5789e2e9] FileIO v1.16.0
   [da1fdf0e] FreqTables v0.4.5
-  [7073ff75] IJulia v1.23.3
+  [7073ff75] IJulia v1.24.0
   [babc3d20] JDF v0.5.1
   [9da8a3cd] JLSO v2.7.0
   [b9914132] JSONTables v1.0.3
   [86f7a689] NamedArrays v0.9.6
   [2dfb63ee] PooledArrays v1.4.2
-  [f3b207a7] StatsPlots v0.15.3
-  [bd369af6] Tables v1.9.0
-  [a5390f91] ZipFile v0.10.0
+  [f3b207a7] StatsPlots v0.15.4
+  [bd369af6] Tables v1.10.0
+  [a5390f91] ZipFile v0.10.1
   [9a3f8284] Random
-  [10745b16] Statistics
+  [10745b16] Statistics v1.9.0
 ```
 
 I will try to keep the material up to date as the packages evolve.
@@ -118,7 +118,8 @@ Changelog:
 | 2021-05-15 | Updated to DataFrames.jl 1.1.1 |
 | 2021-05-15 | Updated to DataFrames.jl 1.2 and DataFramesMeta.jl 0.8, added Chain.jl instead of Pipe.jl |
 | 2021-12-12 | Updated to DataFrames.jl 1.3 |
-| 2021-10-05 | Updated to DataFrames.jl 1.4 |
+| 2022-10-05 | Updated to DataFrames.jl 1.4 |
+| 2023-02-13 | Updated to DataFrames.jl 1.5 |
 
 # Core functions summary
 
@@ -127,7 +128,7 @@ Changelog:
 3. Handling missing: `missing` (singleton instance of `Missing`), `ismissing`, `nonmissingtype`, `skipmissing`, `replace`, `replace!`, `coalesce`, `allowmissing`, `disallowmissing`, `allowmissing!`, `completecases`, `dropmissing`, `dropmissing!`, `disallowmissing`, `disallowmissing!`, `passmissing`
 4. Loading and saving: `CSV` (package), `CSVFiles` (package), `Serialization` (module), `CSV.read`, `CSV.write`, `save`, `load`, `serialize`, `deserialize`, `Arrow.write`, `Arrow.Table` (from Arrow.jl package), `JSONTables` (package), `arraytable`, `objecttable`, `jsontable`, `CodecZlib` (module), `GzipCompressorStream`, `GzipDecompressorStream`, `JDF.jl` (package), `JDF.save`, `JDF.load`, `JLSO.jl` (package), `JLSO.save`, `JLSO.load`, `ZipFile.jl` (package), `ZipFile.reader`, `ZipFile.writer`, `ZipFile.addfile`
 5. Working with columns: `rename`, `rename!`, `hcat`, `insertcols!`, `categorical!`, `columnindex`, `hasproperty`, `select`, `select!`, `transform`, `transform!`, `combine`, `Not`, `All`, `Between`, `ByRow`, `AsTable`
-6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleteat!`, `unique`, `nonunique`, `unique!`, `repeat`, `parent`, `parentindices`, `flatten`, `@chain` (from `Chain.jl` package), `only`, `subset`, `subset!`, `shuffle`, `prepend!`, `pushfirst!`, `insert!`, `keepat!`
+6. Working with rows: `sort!`, `sort`, `issorted`, `append!`, `vcat`, `push!`, `view`, `filter`, `filter!`, `deleteat!`, `unique`, `nonunique`, `unique!`, `allunique`, `repeat`, `parent`, `parentindices`, `flatten`, `@chain` (from `Chain.jl` package), `only`, `subset`, `subset!`, `shuffle`, `prepend!`, `pushfirst!`, `insert!`, `keepat!`
 7. Working with categorical: `categorical`, `cut`, `isordered`, `ordered!`, `levels`, `unique`, `levels!`, `droplevels!`, `unwrap`, `recode`, `recode!`
 8. Joining: `innerjoin`, `leftjoin`, `leftjoin!`, `rightjoin`, `outerjoin`, `semijoin`, `antijoin`, `crossjoin`
 9. Reshaping: `stack`, `unstack`
