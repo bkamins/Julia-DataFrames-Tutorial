@@ -1,8 +1,8 @@
 # An Introduction to DataFrames.jl
 
-[Bogumił Kamiński](http://bogumilkaminski.pl/about/), February 13, 2023
+[Bogumił Kamiński](http://bogumilkaminski.pl/about/), February 12, 2026
 
-**The tutorial is for DataFrames.jl 1.5.0**
+**The tutorial is for DataFrames.jl 1.8.2**
 
 A brief introduction to basic usage of [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
@@ -15,30 +15,29 @@ command line:
 julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
-Tested under Julia 1.9.0. The project dependencies are the following:
+Tested under Julia 1.13.0. The project dependencies are the following:
 
 ```
-  [69666777] Arrow v2.4.3
-  [6e4b80f9] BenchmarkTools v1.3.2
-  [336ed68f] CSV v0.10.9
-  [324d7699] CategoricalArrays v0.10.7
-  [8be319e6] Chain v0.5.0
-  [944b1d66] CodecZlib v0.7.1
-  [a93c6f00] DataFrames v1.5.0
-  [1313f7d8] DataFramesMeta v0.13.0
-  [5789e2e9] FileIO v1.16.0
-  [da1fdf0e] FreqTables v0.4.5
-  [7073ff75] IJulia v1.24.0
-  [babc3d20] JDF v0.5.1
+  [69666777] Arrow v2.8.1
+  [6e4b80f9] BenchmarkTools v1.8.0
+  [336ed68f] CSV v0.10.17
+  [324d7699] CategoricalArrays v1.1.1
+  [8be319e6] Chain v1.0.0
+  [944b1d66] CodecZlib v0.7.9
+  [a93c6f00] DataFrames v1.8.2
+  [1313f7d8] DataFramesMeta v0.15.6
+  [5789e2e9] FileIO v1.20.0
+  [da1fdf0e] FreqTables v1.0.0
+  [7073ff75] IJulia v1.34.4
   [9da8a3cd] JLSO v2.7.0
   [b9914132] JSONTables v1.0.3
-  [86f7a689] NamedArrays v0.9.6
-  [2dfb63ee] PooledArrays v1.4.2
-  [f3b207a7] StatsPlots v0.15.4
-  [bd369af6] Tables v1.10.0
+  [86f7a689] NamedArrays v0.10.5
+  [2dfb63ee] PooledArrays v1.4.3
+  [10745b16] Statistics v1.11.5
+  [f3b207a7] StatsPlots v0.15.8
+  [bd369af6] Tables v1.14.0
   [a5390f91] ZipFile v0.10.1
-  [9a3f8284] Random
-  [10745b16] Statistics v1.9.0
+  [9a3f8284] Random v1.11.0
 ```
 
 I will try to keep the material up to date as the packages evolve.
@@ -120,6 +119,7 @@ Changelog:
 | 2021-12-12 | Updated to DataFrames.jl 1.3 |
 | 2022-10-05 | Updated to DataFrames.jl 1.4 |
 | 2023-02-13 | Updated to DataFrames.jl 1.5 |
+| 2026-09-12 | Updated to DataFrames.jl 1.8.2 and Julia 1.13.0 |
 
 # Core functions summary
 
